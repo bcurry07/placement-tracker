@@ -7,8 +7,11 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
-var routes = require('./routes/index');
-var users = require('./routes/user');
+//var routes = require('./routes/index');
+
+var placementModel = require('./server/models/Placement');
+var placements = require('./server/controllers/placements');
+
 
 //set environment variable to development by default
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
@@ -30,12 +33,24 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(app.router);
 
 
+
+
+
+
+//**************************************************************************
+
+
+
+
+
+
+
 if(env === 'development') {
     //EDIT: change "untitled" to name of app root directory
     mongoose.connect('mongodb://localhost/untitled');
 } else {
     //EDIT: mongolab.com hosted db connection string
-    mongoose.connect('mongodb://bcurry:untitled@ds041188.mongolab.com:41188/untitled');
+    mongoose.connect('mongodb://bcurry:placements@ds037768.mongolab.com:37768/placements');
 }
 
 var db = mongoose.connection;
@@ -44,20 +59,18 @@ db.once('open', function callback() {
     console.log('db opened');
 });
 
-//EDIT: This is not generic code, it is app specific. Remove/replace as needed.
-var messageSchema = mongoose.Schema({
-    message: String
-});
-var Message = mongoose.model('Message', messageSchema);
-var mongoMessage;
-Message.findOne().exec(function(err, doc) {
-    mongoMessage = doc.message;
-});
-
+placementModel.createDefaultPlacements();
 
 
 app.get('/partials/:partialPath', function(req, res) {
     res.render('partials/' + req.params.partialPath);
+});
+
+app.get('/api/placements', placements.getPlacements);
+
+
+app.all('/api/*', function(req, res) {
+   res.send(404);
 });
 
 //creates a "catch-all" route that always serves up index page and leaves routing responsibility to client-side (caution: dangerous if routing is messed up)
@@ -65,11 +78,28 @@ app.get('/partials/:partialPath', function(req, res) {
 //    res.render('index');
 //});
 
-//This is the default route that comes with this file OOB. Routes users to index file when they hit the root url
-//EDIT: mongoMessage is just sample data. Remove/replace as needed.
 app.get('/', function(req, res) {
-    res.render('index', {mongoMessage: mongoMessage});
+    res.render('index');
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//******************************************************************************
+
+
+
+
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
