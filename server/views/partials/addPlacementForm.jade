@@ -1,0 +1,29 @@
+h1 Add Placement
+.container
+    form.col-md-4(name="newPlacementForm")
+        .fieldset
+            .form-group
+                label(for="placementName") Name
+                input.form-control(name="placementName", id="placementName", type="text", required, ng-model="placement.name", autofocus, placeholder="Candidate name...")
+            .form-group
+                label(for="placementDate") Date
+                input.form-control(name="placementDate", id="placementDate", type="text", required, ng-model="placement.date", placeholder="Placement Date...")
+            .form-group
+                label(for="placementClient") Client
+                input.form-control(name="placementClient", id="placementClient", type="text", required, ng-model="placement.client", placeholder="Enter Client Name...")
+            .form-group
+                label(for="placementOnBilling") Currently on Billing?
+                select.input-sm(ng-model="placement.onBilling", id="billing")
+                    option(selected, value="yes") Yes
+                    option(value="no") No
+            .form-group
+                label(for="placementType") Placement Type:
+                select.input-sm(ng-model="placement.type", id="placementType")
+                    option(selected, value="contract") Contract
+                    option(value="perm") Perm
+            .form-group
+                label(for="placementNotes") Notes
+                input.form-control(name="placementNotes", id="placementNotes", type="text", ng-model="placement.notes", placeholder="Enter Comments...")
+
+        button.btn.btn-success(type="submit", ng-disabled="newPlacementForm.$invalid", ng-click="addNewPlacement(placement)") Save
+        button.btn.btn-default(type="button", ng-click="cancelEdit()") Cancel

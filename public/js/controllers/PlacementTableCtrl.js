@@ -1,6 +1,10 @@
-angular.module('app').controller('placementTableCtrl', function($scope, PlacementData) {
-    $scope.myVar = "Hello from Angular, placement table will go here";
+angular.module('app').controller('placementTableCtrl', function($scope, $location, PlacementData) {
+
 
     $scope.placements = PlacementData.query();
+
+    $scope.addNew = function() {
+        $location.url('/new');
+    }
 });
 

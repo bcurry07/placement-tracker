@@ -7,6 +7,10 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
         {
             templateUrl: '/partials/main',
             controller: 'placementTableCtrl'
+        }).when('/new',
+        {
+            templateUrl: '/partials/addPlacementForm',
+            controller: 'newPlacementCtrl'
         });
 
 });

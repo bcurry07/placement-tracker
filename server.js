@@ -67,6 +67,7 @@ app.get('/partials/:partialPath', function(req, res) {
 });
 
 app.get('/api/placements', placements.getPlacements);
+//app.post('/api/placements', placements.addPlacement);
 
 
 app.all('/api/*', function(req, res) {
