@@ -6,6 +6,16 @@ exports.getPlacements = function(req, res) {
     });
 };
 
+exports.getPlacement = function(req, res) {
+    console.log(req);
+    Placement.find({"_id" : req.params.placementId}).exec(function(err, placement) {
+        res.send(placement);
+    });
+
+
+
+};
+
 //exports.addPlacement = function(req, res) {
 //    Placement.insert(req.body).exec(function(err, result) {
 //        res.send(err);

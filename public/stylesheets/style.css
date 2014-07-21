@@ -5,3 +5,9 @@ body {
 a {
   color: #00b7ff;
 }
+select.input-sm {
+  color: #272b30;
+}
+.badge {
+  margin-left: 5px;
+}

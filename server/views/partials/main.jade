@@ -12,11 +12,12 @@ hr
                     td Client
                     td Type
                     td On Billing
+                        span.badge.btn-warning {{onBillingCount}}
                     td Notes
             tbody
-                tr(ng-repeat="placement in placements")
+                tr(ng-repeat="placement in placements" ng-click="editPlacement(placement)")
                     td {{placement.name}}
-                    td {{placement.date | date}}
+                    td {{placement.date | date : 'shortDate'}}
                     td {{placement.client}}
                     td {{placement.type}}
                     td {{placement.onBilling}}

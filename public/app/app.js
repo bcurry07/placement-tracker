@@ -11,6 +11,10 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
         {
             templateUrl: '/partials/addPlacementForm',
             controller: 'newPlacementCtrl'
+        }).when('/edit/:placementId',
+        {
+            templateUrl: '/partials/addPlacementForm',
+            controller: 'editPlacementCtrl'
         });
 
 });

@@ -66,6 +66,13 @@ app.get('/partials/:partialPath', function(req, res) {
     res.render('partials/' + req.params.partialPath);
 });
 
+//app.get('/api/placements/:placementId', function(req, res) {
+//    console.log('the ID is ' + req.params.placementId);
+//});
+
+app.get('/api/placements/:placementId', placements.getPlacement);
+
+
 app.get('/api/placements', placements.getPlacements);
 //app.post('/api/placements', placements.addPlacement);
 
@@ -79,7 +86,7 @@ app.all('/api/*', function(req, res) {
 //    res.render('index');
 //});
 
-app.get('/', function(req, res) {
+app.get('*', function(req, res) {
     res.render('index');
 });
 
