@@ -1,24 +1,62 @@
 .row
-    .col-md-3.col-md-offset-2
-        button.btn.btn-info(ng-click="addNew()") Add Placement!
+    .col-md-1.col-md-offset-2
+        button.btn.btn-info.pull-right(ng-click="addNew()", data-toggle="tooltip", data-placement="top", title="Add New Placement!")
+            span.glyphicon.glyphicon-plus.addIcon
+            //| Add Placement
+
+
+    .col-md-2.form-group
+        .input-group
+            input.form-control(type="text", placeholder="Search...", ng-model="filterText")
+            span.input-group-addon.searchIcon
+                span.glyphicon.glyphicon-search
+
 hr
 .row
     .col-md-8.col-md-offset-2
         table.table.table-striped.table-hover
             thead
                 tr
-                    td Name
-                    td Date
-                    td Client
-                    td Type
-                    td On Billing
+                    td.deleteCell
+                    td.cursor(ng-click="placementSortOrder='name'; reverseSort = !reverseSort") Name
+                    td.cursor(ng-click="placementSortOrder='date'; reverseSort = !reverseSort") Date
+                    td.cursor(ng-click="placementSortOrder='client'; reverseSort = !reverseSort") Client
+                    td.cursor(ng-click="placementSortOrder='type'; reverseSort = !reverseSort") Type
+                    td.cursor(ng-click="placementSortOrder='onBilling'; reverseSort = !reverseSort") On Billing
                         span.badge.btn-warning {{onBillingCount}}
                     td Notes
             tbody
-                tr(ng-repeat="placement in placements" ng-click="editPlacement(placement)")
-                    td {{placement.name}}
+                tr(ng-repeat="placement in placements | orderBy:placementSortOrder:reverseSort | filter:filterText | filter:filterClient | filter:filterOnBilling")
+                    td
+                        span.glyphicon.glyphicon-remove.deleteIcon.cursor(data-toggle="modal", data-target="#deleteModal", ng-click="setPlacementToDelete(placement)")
+                    td.cursor(ng-click="editPlacement(placement)") {{placement.name}}
                     td {{placement.date | date : 'shortDate'}}
                     td {{placement.client}}
                     td {{placement.type}}
                     td {{placement.onBilling}}
                     td {{placement.notes}}
+    .col-md-2
+        .panel.panel-default.panel-success
+            .panel-heading.text-center On Billing by Client
+            table.table
+                tr
+                    th Client
+                    th.text-center Billing
+                tr(ng-repeat="item in list | orderBy:billingCountSortOrder")
+                    td.cursor(ng-click="sortTable(item.client)") {{item.client}}
+                    td.text-center {{item.count}}
+
+#deleteModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+    .modal-dialog
+        .modal-content
+            .modal-header
+                button.close(type='button', data-dismiss='modal')
+                    span(aria-hidden='true') ×
+                    span.sr-only Close
+                h4#myModalLabel.modal-title Delete Placement
+            .modal-body
+                | Do you want to delete the placement of {{placementToDelete.name}}?
+            .modal-footer
+                button.btn.btn-default(type='button', data-dismiss='modal') Cancel
+                button.btn.btn-primary(type='button', data-dismiss='modal', ng-click="deletePlacement()") Yes
+

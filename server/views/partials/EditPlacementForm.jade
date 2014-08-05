@@ -1,7 +1,6 @@
-
 .container
-    h1 Add Placement
 
+    h1 Edit Placement
     br
     form.col-md-4(name="newPlacementForm")
         .fieldset
@@ -28,6 +27,5 @@
                 label(for="placementNotes") Notes
                 input.form-control(name="placementNotes", id="placementNotes", type="text", ng-model="placement.notes", placeholder="Enter Comments...")
 
-        button.btn.btn-success(ng-disabled="newPlacementForm.$invalid", ng-click="addNewPlacement(placement)") Save
-
+        button.btn.btn-success(ng-disabled="newPlacementForm.$invalid", ng-click="updatePlacement(placement)") Update
         button.btn.btn-default.cancel_button(type="button", ng-click="cancelEdit()") Cancel

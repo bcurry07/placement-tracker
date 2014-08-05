@@ -1,6 +1,17 @@
 extends layout
 
 block content
-  section.content
-      
-      div(ng-view)
+    .container
+        div(ng-controller='mainMenuCtrl')
+            .navbar.navbar-default
+                .navbar-header
+                    button.btn.btn-success.navbar-toggle(data-toggle='collapse', data-target='.navbar-collapse')
+                        span.glyphicon.glyphicon-chevron-down
+                .navbar-collapse.collapse
+                    ul.nav.navbar-nav.navbar-left
+                        li#home.nav.active
+                            a(href='/') Placements
+                        li#new.nav
+                            a(href='/graphs') Graphs
+
+    ng-view

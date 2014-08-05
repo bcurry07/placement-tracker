@@ -13,8 +13,12 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
             controller: 'newPlacementCtrl'
         }).when('/edit/:placementId',
         {
-            templateUrl: '/partials/addPlacementForm',
+            templateUrl: '/partials/EditPlacementForm',
             controller: 'editPlacementCtrl'
+        }).when('/graphs',
+        {
+            templateUrl: '/partials/graphs',
+            controller: 'graphsCtrl'
         });
 
 });

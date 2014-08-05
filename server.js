@@ -34,14 +34,7 @@ app.use(app.router);
 
 
 
-
-
-
 //**************************************************************************
-
-
-
-
 
 
 
@@ -61,21 +54,23 @@ db.once('open', function callback() {
 
 placementModel.createDefaultPlacements();
 
+//*****************************************************************************
 
 app.get('/partials/:partialPath', function(req, res) {
     res.render('partials/' + req.params.partialPath);
 });
 
-//app.get('/api/placements/:placementId', function(req, res) {
-//    console.log('the ID is ' + req.params.placementId);
-//});
-
 app.get('/api/placements/:placementId', placements.getPlacement);
 
-
 app.get('/api/placements', placements.getPlacements);
-//app.post('/api/placements', placements.addPlacement);
 
+app.put('/api/placements/:placementId', placements.updatePlacement);
+
+app.post('/api/placements', placements.addPlacement);
+
+app.get('/api/billingclients', placements.getBillingClients);
+
+app.delete('/api/placements/:placementId', placements.deletePlacement);
 
 app.all('/api/*', function(req, res) {
    res.send(404);

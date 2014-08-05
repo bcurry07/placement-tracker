@@ -6,20 +6,23 @@ angular.module('app').controller('editPlacementCtrl', function($scope, $location
 
     $scope.add_new = false;
 
-    $scope.updatePlacement = function(placement) {
-        notifier.notify('Placement updated!');
-    };
     var placement_id = $route.current.pathParams.placementId;
 
-
-
         PlacementData.query( {_id: placement_id}).$promise.then(function(data) {
+            console.log(data);
             var placement = data[0];
             placement.date = $filter('date')(placement.date, 'shortDate');
             $scope.placement = placement;
         });
 
 
+    $scope.updatePlacement = function(placement) {
+
+        PlacementData.update({_id: placement_id}, placement);
+
+            $location.url('/');
+            notifier.notify('Placement updated!');
+        };
 
 
 

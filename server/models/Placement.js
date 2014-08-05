@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var timestamps = require('mongoose-timestamp');
 
 var placementSchema = mongoose.Schema({
     name: String,
@@ -8,6 +9,8 @@ var placementSchema = mongoose.Schema({
     type: String,
     notes: String
 });
+
+placementSchema.plugin(timestamps);
 
 var Placement = mongoose.model('Placement', placementSchema);
 

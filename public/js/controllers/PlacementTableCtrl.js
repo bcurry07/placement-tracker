@@ -1,9 +1,22 @@
-angular.module('app').controller('placementTableCtrl', function($scope, $location, PlacementData, onBillCount) {
+angular.module('app').controller('placementTableCtrl', function($scope, $location, PlacementData, onBillCount, OnBillCountByClient, notifier) {
 
+    $scope.reverseSort = false;
+    $scope.placementSortOrder = "-date";
+    $scope.billingCountSortOrder = "-count";
+    $scope.sortTable = function(client) {
+        $scope.filterOnBilling = "yes";
+        $scope.filterClient = client;
+    };
 
     PlacementData.query().$promise.then(function(data) {
+       //console.log(data);
        $scope.placements = data;
+
        $scope.onBillingCount = onBillCount.getCount(data);
+
+        OnBillCountByClient.getList($scope.placements).then(function(list) {
+            $scope.list = list;
+        });
     });
 
 
@@ -16,5 +29,23 @@ angular.module('app').controller('placementTableCtrl', function($scope, $locatio
       var placementId = placement._id;
         $location.url('/edit/' + placementId);
     };
+
+
+
+    $scope.setPlacementToDelete = function(placement) {
+        $scope.placementToDelete = placement;
+    };
+
+    $scope.deletePlacement = function() {
+        var placementId = $scope.placementToDelete._id;
+        PlacementData.remove({_id: placementId});
+
+        $location.url('/');
+        notifier.notify('Placement deleted');
+    };
+
+
+
+
 });
 
