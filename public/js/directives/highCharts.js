@@ -78,6 +78,7 @@ angular.module('app').directive('highChart', function(PlacementData) {
                         title: {
                             text: '# of Placements'
                         },
+                        allowDecimals: false,
                         min: 0,
                         plotLines: [
                             {

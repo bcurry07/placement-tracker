@@ -29,7 +29,8 @@ hr
                 tr(ng-repeat="placement in placements | orderBy:placementSortOrder:reverseSort | filter:filterText | filter:filterClient | filter:filterOnBilling")
                     td
                         span.glyphicon.glyphicon-remove.deleteIcon.cursor(data-toggle="modal", data-target="#deleteModal", ng-click="setPlacementToDelete(placement)")
-                    td.cursor(ng-click="editPlacement(placement)") {{placement.name}}
+                    td
+                        span.cursor.placementName(ng-click="editPlacement(placement)") {{placement.name}}
                     td {{placement.date | date : 'shortDate'}}
                     td {{placement.client}}
                     td {{placement.type}}

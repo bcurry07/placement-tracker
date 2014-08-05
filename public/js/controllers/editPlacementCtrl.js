@@ -11,6 +11,7 @@ angular.module('app').controller('editPlacementCtrl', function($scope, $location
         PlacementData.query( {_id: placement_id}).$promise.then(function(data) {
             console.log(data);
             var placement = data[0];
+            console.log(placement);
             placement.date = $filter('date')(placement.date, 'shortDate');
             $scope.placement = placement;
         });

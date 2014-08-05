@@ -19,8 +19,17 @@ exports.getPlacement = function(req, res) {
 
 //UPDATE by id
 exports.updatePlacement = function(req, res) {
+    var placement = {
+        "name": req.body.name,
+        "date": req.body.date,
+        "client": req.body.client,
+        "type": req.body.type,
+        "onBilling": req.body.onBilling,
+        "notes": req.body.notes
+    };
 
-    Placement.update({ _id: req.params.placementId }, { $set: req.body }, function(error, result) {
+    Placement.update({ _id: req.params.placementId }, { $set: placement }, function(error, result) {
+        if(error) console.log(error);
 });
 
 };
