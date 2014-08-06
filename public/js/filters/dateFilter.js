@@ -10,9 +10,9 @@ angular.module('app').filter('dateFilter', function($filter) {
        }
        else {
 
-           var hour = new Date(item).getHours();
-           item.setHours(hour + 24);
-        
+//           var hour = new Date(item).getHours();
+//           item.setHours(hour + 24);
+
            return $filter('date')(item, 'shortDate');
        }
 
