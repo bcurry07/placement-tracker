@@ -30,6 +30,7 @@ exports.updatePlacement = function(req, res) {
 
     Placement.update({ _id: req.params.placementId }, { $set: placement }, function(error, result) {
         if(error) console.log(error);
+
 });
 
 };

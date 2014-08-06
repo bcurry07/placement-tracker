@@ -43,7 +43,7 @@ angular.module('app').controller('placementTableCtrl', function($scope, $locatio
         var placementId = $scope.placementToDelete._id;
         PlacementData.remove({_id: placementId});
 
-        $location.url('/');
+
         getData();
         notifier.notify('Placement deleted');
     };
