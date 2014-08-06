@@ -1,4 +1,4 @@
-angular.module('app').controller('newPlacementCtrl', function($scope, $location, notifier, PlacementData, $filter) {
+angular.module('app').controller('newPlacementCtrl', function($scope, $location, notifier, PlacementData) {
 
     $scope.cancelEdit = function() {
         $location.url('/');

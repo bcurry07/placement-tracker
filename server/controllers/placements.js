@@ -28,6 +28,8 @@ exports.updatePlacement = function(req, res) {
         "notes": req.body.notes
     };
 
+
+
     Placement.update({ _id: req.params.placementId }, { $set: placement }, function(error, result) {
         if(error) console.log(error);
 
@@ -39,6 +41,12 @@ exports.updatePlacement = function(req, res) {
 exports.addPlacement = function(req, res) {
 
     var newPlacement = new Placement(req.body);
+
+    var placementHour = newPlacement.date.getHours();
+    console.log(placementHour);
+    newPlacement.date = newPlacement.date.setHours(placementHour + 5);
+    console.log(newPlacement.date);
+
     newPlacement.save(function(err) {
 
     });
