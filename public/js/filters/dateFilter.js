@@ -11,10 +11,10 @@ angular.module('app').filter('dateFilter', function($filter) {
        }
        else {
 
-//           var hour = new Date(item).getHours();
-//           item.setHours(hour + 24);
+           var newDate = new Date(item);
+           newDate.setDate(trueDate);
            console.log('the ng filter was NOT right');
-           return $filter('date')(item, 'shortDate');
+           return $filter('date')(newDate, 'shortDate');
        }
 
    };
