@@ -44,7 +44,7 @@ angular.module('app').factory('OnBillCountByClient', function($http, $q) {
                     });
 
 
-                    list.push({"client": client, "count": clientBillCount});
+                    if (clientBillCount > 0) list.push({"client": client, "count": clientBillCount});
                 });
                deferred.resolve(list);
             });

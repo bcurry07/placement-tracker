@@ -1,4 +1,4 @@
-angular.module('app').controller('placementTableCtrl', function($scope, $location, PlacementData, onBillCount, OnBillCountByClient, notifier) {
+angular.module('app').controller('placementTableCtrl', function($scope, $location, PlacementData, onBillCount, OnBillCountByClient, notifier, editingPlacement) {
 
     $scope.reverseSort = false;
     $scope.placementSortOrder = "-date";
@@ -8,17 +8,19 @@ angular.module('app').controller('placementTableCtrl', function($scope, $locatio
         $scope.filterClient = client;
     };
 
-    PlacementData.query().$promise.then(function(data) {
-       //console.log(data);
-       $scope.placements = data;
+    var getData = function() {
 
-       $scope.onBillingCount = onBillCount.getCount(data);
+        PlacementData.query().$promise.then(function (data) {
+            //console.log(data);
+            $scope.placements = data;
 
-        OnBillCountByClient.getList($scope.placements).then(function(list) {
-            $scope.list = list;
+            $scope.onBillingCount = onBillCount.getCount(data);
+
+            OnBillCountByClient.getList($scope.placements).then(function (list) {
+                $scope.list = list;
+            });
         });
-    });
-
+    };
 
 
     $scope.addNew = function() {
@@ -26,6 +28,7 @@ angular.module('app').controller('placementTableCtrl', function($scope, $locatio
     };
 
     $scope.editPlacement = function(placement) {
+        editingPlacement.selectedPlacement = placement;
       var placementId = placement._id;
         $location.url('/edit/' + placementId);
     };
@@ -41,10 +44,12 @@ angular.module('app').controller('placementTableCtrl', function($scope, $locatio
         PlacementData.remove({_id: placementId});
 
         $location.url('/');
+        getData();
         notifier.notify('Placement deleted');
     };
 
 
+    getData();
 
 
 });
