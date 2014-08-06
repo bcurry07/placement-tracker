@@ -42,11 +42,6 @@ exports.addPlacement = function(req, res) {
 
     var newPlacement = new Placement(req.body);
 
-    var placementHour = newPlacement.date.getHours();
-    console.log(placementHour);
-    newPlacement.date = newPlacement.date.setHours(placementHour + 5);
-    console.log(newPlacement.date);
-
     newPlacement.save(function(err) {
 
     });
