@@ -9,7 +9,7 @@ angular.module('app').controller('editPlacementCtrl', function($scope, $location
 
 
             var placement = editingPlacement.selectedPlacement;
-           placement.date = $filter('date')(placement.date, 'shortDate');
+           placement.date = $filter('date')(placement.date, 'MM/dd/yy');
             $scope.placement = placement;
 
 

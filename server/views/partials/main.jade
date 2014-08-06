@@ -31,7 +31,7 @@ hr
                         span.glyphicon.glyphicon-remove.deleteIcon.cursor(data-toggle="modal", data-target="#deleteModal", ng-click="setPlacementToDelete(placement)")
                     td
                         span.cursor.placementName(ng-click="editPlacement(placement)") {{placement.name}}
-                    td {{placement.date}}
+                    td {{placement.date | date:'MM/dd/yy'}}
                     td {{placement.client}}
                     td {{placement.type}}
                     td {{placement.onBilling}}
