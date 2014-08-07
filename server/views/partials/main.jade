@@ -16,7 +16,7 @@ hr
     .col-md-8.col-md-offset-2
         table.table.table-striped.table-hover
             thead
-                tr
+                tr.strong
                     td.deleteCell
                     td.cursor(ng-click="placementSortOrder='name'; reverseSort = !reverseSort") Name
                     td.cursor(ng-click="placementSortOrder='date'; reverseSort = !reverseSort") Date
@@ -42,10 +42,16 @@ hr
             table.table
                 tr
                     th Client
+                    th
                     th.text-center Billing
                 tr(ng-repeat="item in list | orderBy:billingCountSortOrder")
-                    td.cursor(ng-click="sortTable(item.client)") {{item.client}}
+                    td.cursor(ng-click="sortTable(item)") {{item.client}}
+                    td
+                        btn.btn.btn-danger.filterButton(ng-show="isSelected(item)", ng-click="removeFilter()")
+                            span.glyphicon.glyphicon-filter.pull-left
                     td.text-center {{item.count}}
+
+
 
 #deleteModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
     .modal-dialog

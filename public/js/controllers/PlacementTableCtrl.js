@@ -1,17 +1,26 @@
 angular.module('app').controller('placementTableCtrl', function($scope, $location, PlacementData, onBillCount, OnBillCountByClient, notifier, editingPlacement) {
 
+    $scope.filtered = false;
     $scope.reverseSort = false;
     $scope.placementSortOrder = "-date";
     $scope.billingCountSortOrder = "-count";
-    $scope.sortTable = function(client) {
+
+
+
+    $scope.sortTable = function(item) {
         $scope.filterOnBilling = "yes";
-        $scope.filterClient = client;
+        $scope.filterClient = item.client;
+        $scope.selected = item;
+    };
+
+    $scope.isSelected = function(item){
+        return $scope.selected === item;
     };
 
     var getData = function() {
 
         PlacementData.query().$promise.then(function (data) {
-            //console.log(data);
+
             $scope.placements = data;
 
             $scope.onBillingCount = onBillCount.getCount(data);
@@ -22,6 +31,11 @@ angular.module('app').controller('placementTableCtrl', function($scope, $locatio
         });
     };
 
+    $scope.removeFilter = function() {
+        $scope.filterOnBilling = "";
+        $scope.filterClient = "";
+        $scope.selected = "";
+    };
 
     $scope.addNew = function() {
         $location.url('/new');
