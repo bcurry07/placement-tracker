@@ -12,7 +12,7 @@ angular.module('app').directive('autoComplete', function($timeout, OnBillCountBy
                     select: function() {
                         $timeout(function() {
                             element.trigger('input');
-                        }, 10000);
+                        }, 0);
                     }
 
                 });
