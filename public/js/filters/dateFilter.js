@@ -1,20 +1,23 @@
+//angular oob filter was outputting wrong date - it was converting 8/1/14 00:00:00 to 7/31/13 due to timezone issue
+//therefore I created this custom filter to correct date display value
+
 angular.module('app').filter('dateFilter', function($filter) {
    return function(item) {
 
-       var ngFilteredDate = $filter('date')(item, 'd');
-       var trueDate = new Date(item).getUTCDate();
-        //console.log("ngFilteredDate is " + ngFilteredDate + " and trueDate (UTC) is " + trueDate + " and item was " + item);
-       if (ngFilteredDate == trueDate) {
-           //console.log('the ng filter was right');
-           return $filter('date')(item, 'shortDate');
+       var ngFilteredDate = $filter('date')(item, 'd'); //get the date value that the angular filter is getting, which was incorrect in the prod env
+       var trueDate = new Date(item).getUTCDate(); //get true date using UTC
+
+       if (ngFilteredDate == trueDate) { //compare the two dates. they were always wrong in prod and always right in dev
+
+           return $filter('date')(item, 'shortDate'); //returns the standard angular date filter based on the inputted date (for dev)
 
        }
-       else {
+       else { //else if the angular filter was incorrectly altering the inputted date
 
            var newDate = new Date(item);
-           newDate.setDate(trueDate);
-           //console.log('the ng filter was NOT right');
-           return $filter('date')(newDate, 'shortDate');
+           newDate.setDate(trueDate); //set date to true UTC date
+
+           return $filter('date')(newDate, 'shortDate'); //use angular filter but with the true UTC date (for prod)
        }
 
    };

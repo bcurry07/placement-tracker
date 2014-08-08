@@ -1,15 +1,16 @@
-//need this service to provide # of contract and # of perm deals for each year to display next to graphs (7/31/14)
+//need this service to provide # of contract and # of perm deals for each year to display next to graphs
 
 angular.module('app').factory('yearlyData', function($http, $q) {
 
         return {
-            getData: function(year) {
+            getData: function(year) { //function takes in the year from the controller to send that year's data back into the scope for the graphs page
 
 
                 var deferred = $q.defer();
 
                 $http.get('/api/placements').then(function(response) {
 
+                    //define object variable to hold both contract and perm data for the year requested
                     var placementTypeCount = {
                         "contract": 0,
                         "perm": 0
@@ -17,13 +18,15 @@ angular.module('app').factory('yearlyData', function($http, $q) {
 
                     var placements = response.data;
 
-                    placements.forEach(function(placement) {
+                    placements.forEach(function(placement) { //iterate through each placement
 
                         var date = new Date(placement.date);
 
+                        //if placement date is for that year and its a contract deal then add to contract count
                         if((date.getFullYear() == year) && (placement.type === "Contract")) {
                             placementTypeCount.contract++;
                         }
+                        //else if placement date is for that year and its a perm deal then add to perm count
                         else if((date.getFullYear() == year)&& (placement.type === "Perm")) {
                             placementTypeCount.perm++;
                         }

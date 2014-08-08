@@ -1,69 +1,76 @@
 angular.module('app').controller('placementTableCtrl', function($scope, $location, PlacementData, onBillCount, OnBillCountByClient, notifier, editingPlacement) {
 
-    $scope.filtered = false;
-    $scope.reverseSort = false;
-    $scope.placementSortOrder = "-date";
-    $scope.billingCountSortOrder = "-count";
+
+    $scope.reverseSort = false; //allows sort to toggle between asc/desc
+    $scope.placementSortOrder = "-date"; //default sort is descending by date
+    $scope.billingCountSortOrder = "-count"; //default sort for On Billing by Client table is descending by count
 
 
-
+    //when someone clicks a client in the On Billing by Client table...
     $scope.sortTable = function(item) {
-        $scope.filterOnBilling = "yes";
-        $scope.filterClient = item.client;
-        $scope.selected = item;
+        $scope.filterOnBilling = "yes"; //the main table only displays active billing
+        $scope.filterClient = item.client; //the main table only displays the clicked client
+        $scope.selected = item; //the item selected will show the filtered icon based on this variable which is used in $scope.isSelected
     };
 
     $scope.isSelected = function(item){
-        return $scope.selected === item;
+        return $scope.selected === item; //only returns true for the item selected so only that client will have the filter icon appear next to it
     };
 
+    //function created to get all display data. created a function to reuse within controller
     var getData = function() {
 
-        PlacementData.query().$promise.then(function (data) {
+        PlacementData.query().$promise.then(function (data) { //resource query gets data
 
-            $scope.placements = data;
+            $scope.placements = data; //set placement data on scope
 
-            $scope.onBillingCount = onBillCount.getCount(data);
+            $scope.onBillingCount = onBillCount.getCount(data); //set scope variable for OnBilling badge which counts total # on billing
 
+            //get data for On Billing by Client table and set on scope
             OnBillCountByClient.getList($scope.placements).then(function (list) {
                 $scope.list = list;
             });
         });
     };
 
+    //when someone clicks the filter icon to remove the filter...
     $scope.removeFilter = function() {
-        $scope.filterOnBilling = "";
-        $scope.filterClient = "";
-        $scope.selected = "";
+        $scope.filterOnBilling = ""; //onBilling filter removed from main table
+        $scope.filterClient = ""; //client filter removed from main table
+        $scope.selected = ""; //no filter item selected so the icon should disappear when this variable is cleared out and then used in $scope.isSelected
     };
 
+    //clicking the add button takes the user to the add new placement form
     $scope.addNew = function() {
         $location.url('/new');
     };
 
+    //clicking a consultant name takes the user to the edit placement form
     $scope.editPlacement = function(placement) {
-        editingPlacement.selectedPlacement = placement;
+        editingPlacement.selectedPlacement = placement; //communicate the clicked placement via a service
       var placementId = placement._id;
-        $location.url('/edit/' + placementId);
+        $location.url('/edit/' + placementId); //pass in the id with the URL to be used by the editPlacementCtrl
     };
 
 
-
+    //sets a scope variable for the clicked placement when user clicks the
+    //delete button so the overlay knows which one was clicked and therefore which to delete
     $scope.setPlacementToDelete = function(placement) {
         $scope.placementToDelete = placement;
     };
 
+    //actually removes the placement from the db
     $scope.deletePlacement = function() {
         var placementId = $scope.placementToDelete._id;
         PlacementData.remove({_id: placementId});
 
 
-        getData();
+        getData(); //refreshes the data after delete
         notifier.notify('Placement deleted');
     };
 
 
-    getData();
+    getData(); //gets data initially to display on page upon load
 
 
 });

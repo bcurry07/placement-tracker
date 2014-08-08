@@ -1,9 +1,12 @@
+//highcharts plug-in to create graphs using a directive as an attribute in the html tag
+
 angular.module('app').directive('highChart', function(PlacementData) {
     return {
         restrict: 'A',
         link: function (scope, elem, attrs) {
 
-            var year = attrs.year;
+            var year = attrs.year; //get years from attribute in html tag
+            //initialize object variable to hold placement data for each month of the year
             var data_year = {
                 "jan": 0,
                 "feb": 0,
@@ -20,15 +23,15 @@ angular.module('app').directive('highChart', function(PlacementData) {
 
             };
 
-            PlacementData.query().$promise.then(function (data) {
-                for (var month = 0; month < 12; month++) {
+            PlacementData.query().$promise.then(function (data) { //get all placement data
+                for (var month = 0; month < 12; month++) { //iterate through each month
                     var monthCount = 0;
-                    data.forEach(function (item) {
+                    data.forEach(function (item) { //iterate through each placement
 
-                        var date = new Date(item.date);
+                        var date = new Date(item.date); //typecast placement date value to an actual Date variable type
 
-                        //console.log('year is ' + date.getFullYear() + ' and month is ' + date.getMonth());
 
+                        //if the current placement matches the year and month then increment the monthCount
                         if ((date.getFullYear() == year) && (date.getMonth() == month)) {
 
                             monthCount++;
@@ -37,6 +40,7 @@ angular.module('app').directive('highChart', function(PlacementData) {
 
                     });
 
+                    //after month has iterated through all placements, set month count value to the .month variable
                     if (month == 0) data_year.jan = monthCount;
 
                     if (month == 1) data_year.feb = monthCount;
@@ -64,10 +68,10 @@ angular.module('app').directive('highChart', function(PlacementData) {
 
                 }
 
-
+                //after all necessary data is collected, use the highcharts plugin
                 elem.highcharts({
                     title: {
-                        text: year + ' Placements',
+                        text: year + ' Placements', //use year variable to display on chart title
                         x: -20 //center
                     },
                     xAxis: {
@@ -100,6 +104,7 @@ angular.module('app').directive('highChart', function(PlacementData) {
                     series: [
                         {
                             name: 'placements',
+                            //input data into graph
                             data: [data_year.jan, data_year.feb, data_year.mar, data_year.apr, data_year.may, data_year.jun,
                                 data_year.jul, data_year.aug, data_year.sep, data_year.oct, data_year.nov, data_year.dec]
                         }

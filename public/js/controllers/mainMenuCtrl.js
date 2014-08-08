@@ -1,5 +1,6 @@
 angular.module('app').controller('mainMenuCtrl', function($scope) {
 
+
     $scope.homePage = true;
 
     $scope.setActive = function() {
