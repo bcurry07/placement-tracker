@@ -17,5 +17,7 @@ angular.module('app').controller('newPlacementCtrl', function($scope, $location,
         notifier.notify('Placement added - yay!');
     };
 
+
+
 });
 
