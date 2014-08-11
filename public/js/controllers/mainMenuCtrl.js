@@ -1,16 +1,10 @@
-angular.module('app').controller('mainMenuCtrl', function($scope) {
+angular.module('app').controller('mainMenuCtrl', function($scope, $location) {
 
 
-    $scope.homePage = true;
 
-    $scope.setActive = function() {
-        $scope.homePage = !$scope.homePage;
-        $scope.graphsPage = !$scope.graphsPage;
+    $scope.isActive = function(viewLocation) {
+      return viewLocation === $location.path();
     };
-
-
-
-
 
 });
 

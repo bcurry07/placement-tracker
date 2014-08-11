@@ -9,9 +9,9 @@ block content
                         span.glyphicon.glyphicon-chevron-down
                 .navbar-collapse.collapse
                     ul.nav.navbar-nav.navbar-left
-                        li#home.nav(ng-class="{active: homePage}", ng-click="setActive()")
+                        li#home.nav(ng-class="{active: isActive('/')}")
                             a(href='/') Placements
-                        li#new.nav(ng-class="{active: graphsPage}", ng-click="setActive()")
+                        li#new.nav(ng-class="{active: isActive('/graphs')}")
                             a(href='/graphs') Graphs
 
     ng-view
