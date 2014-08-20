@@ -1,5 +1,6 @@
 angular.module('app').controller('newPlacementCtrl', function($scope, $location, notifier, PlacementData) {
 
+
     //cancel button returns user to main page
     $scope.cancelEdit = function() {
         $location.url('/');

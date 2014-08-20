@@ -1,13 +1,36 @@
 angular.module('app').controller('placementTableCtrl', function($scope, $location, PlacementData, onBillCount, OnBillCountByClient, notifier, editingPlacement) {
 
 
+    $scope.updateBilling = function(placement) {
+        if(placement.onBilling === "Yes") {
+            placement.onBilling = "No";
+        }
+        else if(placement.onBilling === "No") {
+            placement.onBilling = "Yes";
+        }
+
+        var placement_id = placement._id;
+
+        PlacementData.update({_id: placement_id}, placement);
+
+        notifier.notify('Placement updated!');
+        getData();
+    };
+
+    $scope.sortColumn = "";
+    $scope.sortTable = function() {
+
+        if ($scope.reverseSort == true) $scope.placementSortOrder=[$scope.sortColumn, 'date'];
+        if ($scope.reverseSort == false) $scope.placementSortOrder=[$scope.sortColumn, '-date'];
+    };
+
     $scope.reverseSort = false; //allows sort to toggle between asc/desc
     $scope.placementSortOrder = "-date"; //default sort is descending by date
     $scope.billingCountSortOrder = "-count"; //default sort for On Billing by Client table is descending by count
 
 
     //when someone clicks a client in the On Billing by Client table...
-    $scope.sortTable = function(item) {
+    $scope.sortPanelTable = function(item) {
         $scope.filterOnBilling = "yes"; //the main table only displays active billing
         $scope.filterClient = item.client; //the main table only displays the clicked client
         $scope.selected = item; //the item selected will show the filtered icon based on this variable which is used in $scope.isSelected

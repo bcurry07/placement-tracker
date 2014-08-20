@@ -29,6 +29,10 @@ select.input-sm {
   display: none;
   color: #f00;
 }
+tr:hover .placementName {
+  text-decoration: underline;
+  font-weight: bold;
+}
 tr:hover .deleteIcon {
   display: block;
 }
@@ -44,4 +48,16 @@ span.glyphicon-filter {
 }
 .filterButton {
   height: 25px;
+}
+.No {
+  color: #f00;
+}
+.Yes {
+  color: #008000;
+}
+.placementRow {
+  height: 30px;
+}
+.placementNzme {
+  width: 350px;
 }

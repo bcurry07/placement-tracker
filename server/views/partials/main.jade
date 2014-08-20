@@ -16,13 +16,13 @@ hr
     .col-md-8.col-md-offset-2
         table.table.table-striped.table-hover
             thead
-                tr.strong
+                tr.strong.placementRow
                     td.deleteCell
-                    td.cursor(ng-click="placementSortOrder='name'; reverseSort = !reverseSort") Name
+                    td.placementName.cursor(ng-click="placementSortOrder='name'; reverseSort = !reverseSort") Name
                     td.cursor(ng-click="placementSortOrder='date'; reverseSort = !reverseSort") Date
-                    td.cursor(ng-click="placementSortOrder='client'; reverseSort = !reverseSort") Client
-                    td.cursor(ng-click="placementSortOrder='type'; reverseSort = !reverseSort") Type
-                    td.cursor(ng-click="placementSortOrder='onBilling'; reverseSort = !reverseSort") On Billing
+                    td.cursor(ng-click="sortColumn='client'; reverseSort = !reverseSort; sortTable()") Client
+                    td.cursor(ng-click="sortColumn='type'; reverseSort = !reverseSort; sortTable()") Type
+                    td.cursor(ng-click="sortColumn='onBilling'; reverseSort = !reverseSort; sortTable()") On Billing
                         span.badge.btn-warning {{onBillingCount}}
                     td Notes
             tbody
@@ -34,7 +34,9 @@ hr
                     td {{placement.date | dateFilter}}
                     td {{placement.client}}
                     td {{placement.type}}
-                    td {{placement.onBilling}}
+                    td(ng-class="placement.onBilling")
+                        span.cursor.glyphicon.glyphicon-ok(ng-show="placement.onBilling | onBillingIcon", ng-click="updateBilling(placement)")
+                        span.cursor.glyphicon.glyphicon-remove(ng-hide="placement.onBilling | onBillingIcon", ng-click="updateBilling(placement)")
                     td {{placement.notes}}
     .col-md-2
         .panel.panel-default.panel-success
@@ -45,7 +47,7 @@ hr
                     th
                     th.text-center Billing
                 tr(ng-repeat="item in list | orderBy:billingCountSortOrder")
-                    td.cursor(ng-click="sortTable(item)") {{item.client}}
+                    td.cursor(ng-click="sortPanelTable(item)") {{item.client}}
                     td
                         btn.btn.btn-danger.filterButton(ng-show="isSelected(item)", ng-click="removeFilter()")
                             span.glyphicon.glyphicon-filter.pull-left
