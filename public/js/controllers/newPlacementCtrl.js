@@ -15,9 +15,14 @@ angular.module('app').controller('newPlacementCtrl', function($scope, $location,
     //add new placement to db
     $scope.addNewPlacement = function(placement) {
 
-        PlacementData.post(placement);
-        $location.url('/');
-        notifier.notify('Placement added - yay!');
+        PlacementData.post(placement, function() {
+            $location.url('/');
+            notifier.notify('Placement added - yay!');
+        },function(error) {
+            console.log(error);
+            notifier.notify("Something went wrong!");
+        });
+
     };
 
 

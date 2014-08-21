@@ -10,11 +10,22 @@ angular.module('app').controller('placementTableCtrl', function($scope, $locatio
         }
 
         var placement_id = placement._id;
-        if (placement.notes = null) placement.notes="";
-        $http.put('/api/placements/' + placement_id, placement);
+        if (placement.notes === null) placement.notes="";
+        $http({method: 'PUT', url: '/api/placements/' + placement_id, data: placement})
+            .success(function() {
 
-            notifier.notify('Placement updated!');
-            getData();
+
+                notifier.notify('Placement updated!');
+                getData();
+
+        }).error(function(error) {
+
+            console.log(error);
+            notifier.notify("Something went wrong!");
+
+        });
+
+
 
 
 
@@ -89,11 +100,16 @@ angular.module('app').controller('placementTableCtrl', function($scope, $locatio
     //actually removes the placement from the db
     $scope.deletePlacement = function() {
         var placementId = $scope.placementToDelete._id;
-        PlacementData.remove({_id: placementId});
+        PlacementData.remove({_id: placementId}, function() {
+            getData(); //refreshes the data after delete
+            notifier.notify('Placement deleted');
+        }, function(error) {
+            console.log(error);
+            notifier.notify("Something went wrong!");
+        });
 
 
-        getData(); //refreshes the data after delete
-        notifier.notify('Placement deleted');
+
     };
 
 

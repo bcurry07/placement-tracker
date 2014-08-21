@@ -33,10 +33,13 @@ exports.updatePlacement = function(req, res) {
     Placement.update({ _id: req.params.placementId }, { $set: placement }, function(error, result) {
         if(error) {
             console.log('there was an error: ' + error);
-
+            res.send(500, { error: error });
+            return;
         }
+        res.json(result);
 
-});
+
+    });
 
 };
 
@@ -45,8 +48,14 @@ exports.addPlacement = function(req, res) {
 
     var newPlacement = new Placement(req.body);
 
-    newPlacement.save(function(err) {
+    newPlacement.save(function(err, result) {
 
+        if(err) {
+            res.send(500, {error: err});
+
+            return;
+        }
+        res.json(result);
     });
 };
 
@@ -54,6 +63,14 @@ exports.addPlacement = function(req, res) {
 exports.deletePlacement = function(req, res) {
 
     Placement.remove({ _id: req.params.placementId }, function(error, result) {
+        if(error) {
+            console.log('there was an error: ' + error);
+            res.send(500, { error: error });
+            return;
+        }
+        res.json(result);
+
+
     });
 
 };
