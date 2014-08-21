@@ -18,7 +18,7 @@ hr
             thead
                 tr.strong.placementRow
                     td.deleteCell
-                    td.cursor(ng-click="placementSortOrder='name'; reverseSort = !reverseSort") Name
+                    td.placementNameColumn.cursor(ng-click="placementSortOrder='name'; reverseSort = !reverseSort") Name
                     td.cursor(ng-click="placementSortOrder='date'; reverseSort = !reverseSort") Date
                     td.cursor(ng-click="sortColumn='client'; reverseSort = !reverseSort; sortTable()") Client
                     td.cursor(ng-click="sortColumn='type'; reverseSort = !reverseSort; sortTable()") Type
