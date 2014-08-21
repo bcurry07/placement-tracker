@@ -1,4 +1,4 @@
-angular.module('app').controller('placementTableCtrl', function($scope, $location, PlacementData, onBillCount, OnBillCountByClient, notifier, editingPlacement) {
+angular.module('app').controller('placementTableCtrl', function($scope, $location, PlacementData, onBillCount, OnBillCountByClient, notifier, editingPlacement, $http) {
 
 
     $scope.updateBilling = function(placement) {
@@ -11,10 +11,14 @@ angular.module('app').controller('placementTableCtrl', function($scope, $locatio
 
         var placement_id = placement._id;
         if (placement.notes = null) placement.notes="";
-        PlacementData.update({_id: placement_id}, placement);
+        $http.put('/api/placements/' + placement_id, placement);
 
-        notifier.notify('Placement updated!');
-        getData();
+            notifier.notify('Placement updated!');
+            getData();
+
+
+
+
     };
 
     $scope.sortColumn = "";
