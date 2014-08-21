@@ -28,15 +28,15 @@ hr
             tbody
                 tr(ng-repeat="placement in placements | orderBy:placementSortOrder:reverseSort | filter:filterText | filter:filterClient | filter:filterOnBilling")
                     td
-                        span.glyphicon.glyphicon-remove.deleteIcon.cursor(data-toggle="modal", data-target="#deleteModal", ng-click="setPlacementToDelete(placement)")
+                        span.glyphicon.glyphicon-minus.deleteIcon.cursor(data-toggle="modal", data-target="#deleteModal", data-placement="top", title="Delete" ng-click="setPlacementToDelete(placement)")
                     td
-                        span.cursor.placementName(ng-click="editPlacement(placement)") {{placement.name}}
+                        span.cursor.placementName(data-toggle="tooltip", data-placement="top", title="Edit", ng-click="editPlacement(placement)") {{placement.name}}
                     td {{placement.date | dateFilter}}
                     td {{placement.client}}
                     td {{placement.type}}
                     td(ng-class="placement.onBilling")
-                        span.cursor.glyphicon.glyphicon-ok(ng-show="placement.onBilling | onBillingIcon", ng-click="updateBilling(placement)")
-                        span.cursor.glyphicon.glyphicon-remove(ng-hide="placement.onBilling | onBillingIcon", ng-click="updateBilling(placement)")
+                        span.billingIcon.cursor.glyphicon.glyphicon-ok(data-toggle="tooltip", data-placement="top", title="Change Billing Status", ng-show="placement.onBilling | onBillingIcon", ng-click="updateBilling(placement)")
+                        span.billingIcon.cursor.glyphicon.glyphicon-remove(data-toggle="tooltip", data-placement="top", title="Change Billing Status", ng-hide="placement.onBilling | onBillingIcon", ng-click="updateBilling(placement)")
                     td {{placement.notes}}
     .col-md-2
         .panel.panel-default.panel-success
