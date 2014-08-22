@@ -1,28 +1,25 @@
 angular.module('app').controller('placementTableCtrl', function($scope, $location, PlacementData, onBillCount, OnBillCountByClient, notifier, editingPlacement, $http) {
 
 
+    //this function is called when a user clicks the x or check icon to update billing status
     $scope.updateBilling = function(placement) {
+        //switch the billing status of the placement in the model
         if(placement.onBilling === "Yes") {
             placement.onBilling = "No";
         }
         else if(placement.onBilling === "No") {
             placement.onBilling = "Yes";
         }
-
+        //update record in db with new billing status
         var placement_id = placement._id;
         if (placement.notes === null) placement.notes="";
         $http({method: 'PUT', url: '/api/placements/' + placement_id, data: placement})
             .success(function() {
-
-
                 notifier.notify('Placement updated!');
                 getData();
-
         }).error(function(error) {
-
             console.log(error);
             notifier.notify("Something went wrong!");
-
         });
 
 

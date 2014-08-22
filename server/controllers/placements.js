@@ -19,6 +19,9 @@ exports.getPlacement = function(req, res) {
 
 //UPDATE by id
 exports.updatePlacement = function(req, res) {
+
+    if(!req.body.notes) req.body.notes = "";
+    
     var placement = {
         "name": req.body.name,
         "date": req.body.date,
