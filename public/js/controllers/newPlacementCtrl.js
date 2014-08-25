@@ -17,10 +17,10 @@ angular.module('app').controller('newPlacementCtrl', function($scope, $location,
 
         PlacementData.post(placement, function() {
             $location.url('/');
-            notifier.notify('Placement added - yay!');
+            notifier.notify('success','Placement added - yay!');
         },function(error) {
             console.log(error);
-            notifier.notify("Something went wrong!");
+            notifier.notify('error','Something went wrong!');
         });
 
     };

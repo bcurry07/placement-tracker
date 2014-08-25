@@ -12,14 +12,14 @@ angular.module('app').controller('placementTableCtrl', function($scope, $locatio
         }
         //update record in db with new billing status
         var placement_id = placement._id;
-        if (placement.notes === null) placement.notes="";
+
         $http({method: 'PUT', url: '/api/placements/' + placement_id, data: placement})
             .success(function() {
-                notifier.notify('Placement updated!');
+                notifier.notify('success','Placement updated!');
                 getData();
         }).error(function(error) {
             console.log(error);
-            notifier.notify("Something went wrong!");
+            notifier.notify('error','Something went wrong!');
         });
 
 
@@ -99,10 +99,10 @@ angular.module('app').controller('placementTableCtrl', function($scope, $locatio
         var placementId = $scope.placementToDelete._id;
         PlacementData.remove({_id: placementId}, function() {
             getData(); //refreshes the data after delete
-            notifier.notify('Placement deleted');
+            notifier.notify('success','Placement deleted');
         }, function(error) {
             console.log(error);
-            notifier.notify("Something went wrong!");
+            notifier.notify('error','Something went wrong!');
         });
 
 

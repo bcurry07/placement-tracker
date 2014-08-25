@@ -4,8 +4,13 @@ angular.module('app').value('toastr', toastr);
 
 angular.module('app').factory('notifier', function(toastr) {
    return {
-       notify: function(msg) {
-           toastr.success(msg);
+       notify: function(type, msg) {
+           if(type === "success") {
+               toastr.success(msg);
+           }
+           else if(type === "error") {
+               toastr.error(msg);
+           }
        }
    }
 });
