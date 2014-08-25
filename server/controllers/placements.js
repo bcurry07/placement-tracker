@@ -20,7 +20,7 @@ exports.getPlacement = function(req, res) {
 //UPDATE by id
 exports.updatePlacement = function(req, res) {
 
-    //if(!req.body.notes) req.body.notes = "";
+    if(!req.body.notes) req.body.notes = "";
 
     var placement = {
         "name": req.body.name,
@@ -49,7 +49,7 @@ exports.updatePlacement = function(req, res) {
 //ADD new
 exports.addPlacement = function(req, res) {
 
-    //if(!req.body.notes) req.body.notes = "";
+    if(!req.body.notes) req.body.notes = "";
     var newPlacement = new Placement(req.body);
 
     newPlacement.save(function(err, result) {
