@@ -2,8 +2,6 @@
     .col-md-1.col-md-offset-2
         button.btn.btn-info.pull-right(ng-click="addNew()", data-toggle="tooltip", data-placement="top", title="Add New Placement!")
             span.glyphicon.glyphicon-plus.addIcon
-            //| Add Placement
-
 
     .col-md-2.form-group
         .input-group
@@ -39,33 +37,9 @@ hr
                         span.billingIcon.cursor.glyphicon.glyphicon-remove(data-toggle="tooltip", data-placement="top", title="Change Billing Status", ng-hide="placement.onBilling | onBillingIcon", ng-click="updateBilling(placement)")
                     td {{placement.notes}}
     .col-md-2
-        .panel.panel-default.panel-success
-            .panel-heading.text-center On Billing by Client
-            table.table
-                tr
-                    th Client
-                    th
-                    th.text-center Billing
-                tr(ng-repeat="item in list | orderBy:billingCountSortOrder")
-                    td.cursor(ng-click="sortPanelTable(item)") {{item.client}}
-                    td
-                        btn.btn.btn-danger.filterButton(data-toggle="tooltip", title="Remove Filter", ng-show="isSelected(item)", ng-click="removeFilter()")
-                            span.glyphicon.glyphicon-filter.pull-left
-                    td.text-center {{item.count}}
+        billing-by-client-panel
+
+delete-modal
 
 
-
-#deleteModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
-    .modal-dialog
-        .modal-content
-            .modal-header
-                button.close(type='button', data-dismiss='modal')
-                    span(aria-hidden='true') ×
-                    span.sr-only Close
-                h4#myModalLabel.modal-title Delete Placement
-            .modal-body
-                | Do you want to delete the placement of {{placementToDelete.name}}?
-            .modal-footer
-                button.btn.btn-default(type='button', data-dismiss='modal') Cancel
-                button.btn.btn-primary(type='button', data-dismiss='modal', ng-click="deletePlacement()") Yes
 

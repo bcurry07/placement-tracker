@@ -1,31 +1,13 @@
 .panel.panel-default.panel-success
-    .panel-heading On Billing by Client
+    .panel-heading.text-center On Billing by Client
     table.table
         tr
             th Client
-            th Billing
-        tr
+            th
+            th.text-center Billing
+        tr(ng-repeat="item in list | orderBy:billingCountSortOrder")
+            td.cursor(ng-click="sortPanelTable(item)") {{item.client}}
             td
-            td
-
-
-
-
-
-
-
-
-
-//<div class="panel panel-default panel-success">
-//    <div class="panel-heading">On Billing by Client</div>
-//    <table class="table">
-//        <tr>
-//            <th>Client</th>
-//            <th>Billing</th>
-//        </tr>
-//        <tr ng-repeat="entry in clientBillingCount | orderBy:billingcountsortorder">
-//            <td class="onBillingClientName" ng-click="sortTable(entry)">{{entry.clientName}}</td>
-//            <td>{{entry.clientCount}}</td>
-//        </tr>
-//    </table>
-//</div>
+                btn.btn.btn-danger.filterButton(data-toggle="tooltip", title="Remove Filter", ng-show="isSelected(item)", ng-click="removeFilter()")
+                    span.glyphicon.glyphicon-filter.pull-left
+            td.text-center {{item.count}}
