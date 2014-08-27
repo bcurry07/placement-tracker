@@ -49,7 +49,7 @@ hr
                 tr(ng-repeat="item in list | orderBy:billingCountSortOrder")
                     td.cursor(ng-click="sortPanelTable(item)") {{item.client}}
                     td
-                        btn.btn.btn-danger.filterButton(ng-show="isSelected(item)", ng-click="removeFilter()")
+                        btn.btn.btn-danger.filterButton(data-toggle="tooltip", title="Remove Filter", ng-show="isSelected(item)", ng-click="removeFilter()")
                             span.glyphicon.glyphicon-filter.pull-left
                     td.text-center {{item.count}}
 
