@@ -15,9 +15,10 @@ angular.module('app').controller('editPlacementCtrl', function($scope, $location
         var placement_id = $route.current.pathParams.placementId;
 
 
-        PlacementData.update({_id: placement_id}, placement, function () {
+        PlacementData.update({_id: placement_id}, placement, function (response) {
             $location.url('/');
             notifier.notify('success','Placement updated!');
+            console.log(response);
         }, function (error) {
 
             console.log(error);

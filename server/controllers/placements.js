@@ -56,6 +56,7 @@ exports.addPlacement = function(req, res) {
         req.body.notes = "";
     }
     var newPlacement = new Placement(req.body);
+    console.log(newPlacement);
 
     newPlacement.save(function(err, result) {
 
