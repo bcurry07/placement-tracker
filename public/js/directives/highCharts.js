@@ -28,7 +28,8 @@ angular.module('app').directive('highChart', function(PlacementData) {
                     var monthCount = 0;
                     data.forEach(function (item) { //iterate through each placement
 
-                        var date = new Date(item.date); //typecast placement date value to an actual Date variable type
+                        var itemDate = new Date(item.date); //typecast placement date value to an actual Date variable type
+                        var date = $filter('dateFilter')(itemDate);
 
 
                         //if the current placement matches the year and month then increment the monthCount
