@@ -3,7 +3,7 @@ angular.module('app').controller('graphsCtrl', function($scope, $location, yearl
         //declare years array to hold year data for graphs page so it can be called using ng-repeat in html
         $scope.years = [];
 
-        var currentYear = new Date().getFullYear(); //get current year to get and display that data on graphs page
+        var currentYear = new Date().getUTCFullYear(); //get current year to get and display that data on graphs page
         var prevYear = currentYear - 1; //get previous year to get and display that data on graphs page
 
         //this gets the data for the current year, including # of perm deals and # of contract deals

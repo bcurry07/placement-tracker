@@ -23,11 +23,11 @@ angular.module('app').factory('yearlyData', function($http, $q) {
                         var date = new Date(placement.date);
 
                         //if placement date is for that year and its a contract deal then add to contract count
-                        if((date.getFullYear() == year) && (placement.type === "Contract")) {
+                        if((date.getUTCFullYear() == year) && (placement.type === "Contract")) {
                             placementTypeCount.contract++;
                         }
                         //else if placement date is for that year and its a perm deal then add to perm count
-                        else if((date.getFullYear() == year)&& (placement.type === "Perm")) {
+                        else if((date.getUTCFullYear() == year)&& (placement.type === "Perm")) {
                             placementTypeCount.perm++;
                         }
 

@@ -1,6 +1,6 @@
 //highcharts plug-in to create graphs using a directive as an attribute in the html tag
 
-angular.module('app').directive('highChart', function(PlacementData, $filter) {
+angular.module('app').directive('highChart', function(PlacementData) {
     return {
         restrict: 'A',
         link: function (scope, elem, attrs) {
@@ -29,7 +29,6 @@ angular.module('app').directive('highChart', function(PlacementData, $filter) {
                     data.forEach(function (item) { //iterate through each placement
 
                         var date = new Date(item.date); //typecast placement date value to an actual Date variable type
-                        //var date = $filter('dateFilter')(itemDate);
 
 
                         //if the current placement matches the year and month then increment the monthCount
