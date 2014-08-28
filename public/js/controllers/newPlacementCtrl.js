@@ -18,7 +18,7 @@ angular.module('app').controller('newPlacementCtrl', function($scope, $location,
         PlacementData.post(placement, function(response) {
             $location.url('/');
             notifier.notify('success','Placement added - yay!');
-            console.log(response);
+
         },function(error) {
             console.log(error);
             notifier.notify('error','Something went wrong!');
