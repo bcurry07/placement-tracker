@@ -10,7 +10,7 @@ angular.module('app').controller('placementTableCtrl', function($scope, $locatio
         else if(placement.onBilling === "No") {
             placement.onBilling = "Yes";
         }
-        //update record in db with new billing status
+        //update record in database with new billing status
         var placement_id = placement._id;
 
         $http({method: 'PUT', url: '/api/placements/' + placement_id, data: placement})
