@@ -28,7 +28,8 @@ select.input-sm {
 .deleteIcon {
   display: none;
 }
-tr:hover .placementName {
+tr:hover .placementName,
+tr:hover .clientName {
   text-decoration: underline;
   font-weight: bold;
 }
@@ -59,6 +60,9 @@ span.glyphicon-filter {
 }
 .placementNameColumn {
   width: 220px;
+}
+.clientNameColumn {
+  width: 120px;
 }
 .billingIcon {
   margin-left: 25px;

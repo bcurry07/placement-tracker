@@ -2,11 +2,11 @@
     .panel-heading.text-center On Billing by Client
     table.table
         tr
-            th Client
+            th.clientNameColumn Client
             th
             th.text-center Billing
         tr(ng-repeat="item in list | orderBy:billingCountSortOrder")
-            td.cursor(ng-click="sortPanelTable(item)") {{item.client}}
+            td.cursor.clientName(ng-click="sortPanelTable(item)") {{item.client}}
             td
                 btn.btn.btn-danger.filterButton(data-toggle="tooltip", title="Remove Filter", ng-show="isSelected(item)", ng-click="removeFilter()")
                     span.glyphicon.glyphicon-filter.pull-left
