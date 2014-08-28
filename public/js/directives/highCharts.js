@@ -1,6 +1,6 @@
 //highcharts plug-in to create graphs using a directive as an attribute in the html tag
 
-angular.module('app').directive('highChart', function(PlacementData) {
+angular.module('app').directive('highChart', function(PlacementData, $filter) {
     return {
         restrict: 'A',
         link: function (scope, elem, attrs) {
