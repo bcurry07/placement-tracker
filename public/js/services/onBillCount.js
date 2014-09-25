@@ -41,15 +41,21 @@ angular.module('app').factory('OnBillCountByClient', function($http, $q) {
 
                 uniqueClientList.forEach(function(client) { //iterate through each unique client
                     var clientBillCount = 0;
+                    var clientCount = 0;
                     placements.forEach(function(placement) { //iterate through each placement
 
                         //if placement matches current client and is on billing then add to the count
-                       if ((placement.client === client) && (placement.onBilling === "Yes")) clientBillCount++;
+                       if (placement.client === client) {
+                           clientCount++;
+                           if (placement.onBilling === "Yes") {
+                               clientBillCount++;
+                           }
+                       }
 
                     });
 
                     //only push clients that have a count > 0
-                    if (clientBillCount > 0) list.push({"client": client, "count": clientBillCount});
+                    list.push({"client": client, "billCount": clientBillCount, "count": clientCount});
                 });
                deferred.resolve(list);
             });

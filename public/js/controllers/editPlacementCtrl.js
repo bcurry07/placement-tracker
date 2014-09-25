@@ -10,6 +10,7 @@ angular.module('app').controller('editPlacementCtrl', function($scope, $location
             $scope.placement = placement;
 
 
+
     //save edits to placement
     $scope.updatePlacement = function(placement) {
         var placement_id = $route.current.pathParams.placementId;

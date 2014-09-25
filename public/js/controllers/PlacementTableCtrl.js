@@ -38,12 +38,12 @@ angular.module('app').controller('placementTableCtrl', function($scope, $locatio
 
     $scope.reverseSort = false; //allows sort to toggle between asc/desc
     $scope.placementSortOrder = "-date"; //default sort is descending by date
-    $scope.billingCountSortOrder = "-count"; //default sort for On Billing by Client table is descending by count
+    $scope.billingCountSortOrder = "-billCount"; //default sort for On Billing by Client table is descending by count
 
 
     //when someone clicks a client in the On Billing by Client table...
-    $scope.sortPanelTable = function(item) {
-        $scope.filterOnBilling = "yes"; //the main table only displays active billing
+    $scope.filterPanelTable = function(item) {
+        //$scope.filterOnBilling = "yes"; //the main table only displays active billing
         $scope.filterClient = item.client; //the main table only displays the clicked client
         $scope.selected = item; //the item selected will show the filtered icon based on this variable which is used in $scope.isSelected
     };

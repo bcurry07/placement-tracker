@@ -23,7 +23,11 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
         {
             templateUrl: '/partials/graphs',
             controller: 'graphsCtrl'
-        });
+        }).otherwise(
+        {
+            redirectTo: '/'
+        }
+    );
 
 });
 

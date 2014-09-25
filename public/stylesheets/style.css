@@ -67,7 +67,8 @@ span.glyphicon-filter {
 .billingIcon {
   margin-left: 25px;
 }
-tr.placementRow:hover td {
+tr.placementRow:hover td,
+tr.panelHeaderRow th:hover {
   text-decoration: underline;
 }
 .clientInput {

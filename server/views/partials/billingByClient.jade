@@ -1,13 +1,15 @@
 .panel.panel-default.panel-success
-    .panel-heading.text-center On Billing by Client
+    .panel-heading.text-center Placements by Client
     table.table
-        tr
-            th.clientNameColumn Client
+        tr.panelHeaderRow
+            th.cursor.clientNameColumn(ng-click="billingCountSortOrder='client'; countReverseSort = !countReverseSort") Client
             th
-            th.text-center Billing
-        tr(ng-repeat="item in list | orderBy:billingCountSortOrder")
-            td.cursor.clientName(ng-click="sortPanelTable(item)") {{item.client}}
+            th.cursor.text-center(ng-click="billingCountSortOrder='billCount'; countReverseSort = !countReverseSort") On Billing
+            th.cursor(ng-click="billingCountSortOrder='count'; countReverseSort = !countReverseSort") Total Placements
+        tr(ng-repeat="item in list | orderBy:billingCountSortOrder:countReverseSort")
+            td.cursor.clientName(ng-click="filterPanelTable(item)") {{item.client}}
             td
                 btn.btn.btn-danger.filterButton(data-toggle="tooltip", title="Remove Filter", ng-show="isSelected(item)", ng-click="removeFilter()")
                     span.glyphicon.glyphicon-filter.pull-left
+            td.numBilling.text-center {{item.billCount}}
             td.text-center {{item.count}}
