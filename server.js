@@ -7,6 +7,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
+
+
 //var routes = require('./routes/index');
 
 var placementModel = require('./server/models/Placement');
@@ -18,6 +20,10 @@ var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 //create express app
 var app = express();
+
+var auth = express.basicAuth(function(username, password) {
+   return username === 'gina' && password === 'gina';
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, '/server/views'));
@@ -31,6 +37,7 @@ app.use(cookieParser());
 app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(app.router);
+
 
 
 
@@ -64,13 +71,13 @@ app.get('/api/placements/:placementId', placements.getPlacement);
 
 app.get('/api/placements', placements.getPlacements);
 
-app.put('/api/placements/:placementId', placements.updatePlacement);
+app.put('/api/placements/:placementId', auth, placements.updatePlacement);
 
-app.post('/api/placements', placements.addPlacement);
+app.post('/api/placements', auth, placements.addPlacement);
 
 app.get('/api/billingclients', placements.getBillingClients);
 
-app.delete('/api/placements/:placementId', placements.deletePlacement);
+app.delete('/api/placements/:placementId', auth, placements.deletePlacement);
 
 app.all('/api/*', function(req, res) {
    res.send(404);
