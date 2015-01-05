@@ -6,7 +6,7 @@ angular.module('app').directive('highChart', function(PlacementData) {
         link: function (scope, elem, attrs) {
 
             var today = new Date();
-            var currentMonth = 3;
+            var currentMonth = today.getUTCMonth();
             var currentYear = today.getUTCFullYear();
 
 
