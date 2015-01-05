@@ -5,6 +5,11 @@ angular.module('app').directive('highChart', function(PlacementData) {
         restrict: 'A',
         link: function (scope, elem, attrs) {
 
+            var today = new Date();
+            var currentMonth = 3;
+            var currentYear = today.getUTCFullYear();
+
+
             var year = attrs.year; //get years from attribute in html tag
             //initialize object variable to hold placement data for each month of the year
             var data_year = {
@@ -41,29 +46,114 @@ angular.module('app').directive('highChart', function(PlacementData) {
                     });
 
                     //after month has iterated through all placements, set month count value to the .month variable
-                    if (month == 0) data_year.jan = monthCount;
+                    if (month == 0) {
+                        if(monthCount == 0 && month >= currentMonth && year == currentYear) {
+                            data_year.jan = null;
+                        }
+                         else {
+                            data_year.jan = monthCount;
+                        }
+                    }
 
-                    if (month == 1) data_year.feb = monthCount;
+                    if (month == 1) {
+                        if(monthCount == 0 && month >= currentMonth && year == currentYear) {
+                            data_year.feb = null;
+                        }
+                        else {
+                            data_year.feb = monthCount;
+                        }
+                    }
 
-                    if (month == 2) data_year.mar = monthCount;
 
-                    if (month == 3) data_year.apr = monthCount;
+                    if (month == 2) {
+                        if(monthCount == 0 && month >= currentMonth && year == currentYear) {
+                            data_year.mar = null;
+                        }
+                        else {
+                            data_year.mar = monthCount;
+                        }
+                    }
 
-                    if (month == 4) data_year.may = monthCount;
+                    if (month == 3) {
+                        if(monthCount == 0 && month >= currentMonth && year == currentYear) {
+                            data_year.apr = null;
+                        }
+                        else {
+                            data_year.apr = monthCount;
+                        }
+                    }
 
-                    if (month == 5) data_year.jun = monthCount;
+                    if (month == 4) {
+                        if(monthCount == 0 && month >= currentMonth && year == currentYear) {
+                            data_year.may = null;
+                        }
+                        else {
+                            data_year.may = monthCount;
+                        }
+                    }
 
-                    if (month == 6) data_year.jul = monthCount;
+                    if (month == 5) {
+                        if(monthCount == 0 && month >= currentMonth && year == currentYear) {
+                            data_year.jun = null;
+                        }
+                        else {
+                            data_year.jun = monthCount;
+                        }
+                    }
 
-                    if (month == 7) data_year.aug = monthCount;
+                    if (month == 6) {
+                        if(monthCount == 0 && month >= currentMonth && year == currentYear) {
+                            data_year.jul = null;
+                        }
+                        else {
+                            data_year.jul = monthCount;
+                        }
+                    }
 
-                    if (month == 8) data_year.sep = monthCount;
+                    if (month == 7) {
+                        if(monthCount == 0 && month >= currentMonth && year == currentYear) {
+                            data_year.aug = null;
+                        }
+                        else {
+                            data_year.aug = monthCount;
+                        }
+                    }
 
-                    if (month == 9) data_year.oct = monthCount;
+                    if (month == 8) {
+                        if(monthCount == 0 && month >= currentMonth && year == currentYear) {
+                            data_year.sep = null;
+                        }
+                        else {
+                            data_year.sep = monthCount;
+                        }
+                    }
 
-                    if (month == 10) data_year.nov = monthCount;
+                    if (month == 9) {
+                        if(monthCount == 0 && month >= currentMonth && year == currentYear) {
+                            data_year.oct = null;
+                        }
+                        else {
+                            data_year.oct = monthCount;
+                        }
+                    }
 
-                    if (month == 11) data_year.dec = monthCount;
+                    if (month == 10) {
+                        if(monthCount == 0 && month >= currentMonth && year == currentYear) {
+                            data_year.nov = null;
+                        }
+                        else {
+                            data_year.nov = monthCount;
+                        }
+                    }
+
+                    if (month == 11) {
+                        if(monthCount == 0 && month >= currentMonth && year == currentYear) {
+                            data_year.dec = null;
+                        }
+                        else {
+                            data_year.dec = monthCount;
+                        }
+                    }
 
 
                 }

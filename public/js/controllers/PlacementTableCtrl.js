@@ -20,6 +20,12 @@ angular.module('app').controller('placementTableCtrl', function($scope, $locatio
         }).error(function(error) {
             console.log(error);
             notifier.notify('error','Something went wrong!');
+                if(placement.onBilling === "Yes") {
+                    placement.onBilling = "No";
+                }
+                else if(placement.onBilling === "No") {
+                    placement.onBilling = "Yes";
+                }
         });
 
 

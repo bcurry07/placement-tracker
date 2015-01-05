@@ -21,6 +21,8 @@ var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 //create express app
 var app = express();
 
+//implements basic HTTP authorization by enforcing credentials via browser login dialog
+//auth is used below as middleware for routes and allows routing to placements.js functions to occur if credentials are correct
 var auth = express.basicAuth(function(username, password) {
    return username === 'gina' && password === 'gina';
 });
@@ -77,7 +79,7 @@ app.post('/api/placements', auth, placements.addPlacement);
 
 app.get('/api/billingclients', placements.getBillingClients);
 
-app.delete('/api/placements/:placementId', auth, placements.deletePlacement);
+app.delete('/api/placements/:placementId', auth, placements.deletePlacement); //auth middleware used to require credentials prior to delete function
 
 app.all('/api/*', function(req, res) {
    res.send(404);
