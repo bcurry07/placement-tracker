@@ -1,31 +1,28 @@
 angular.module('app').controller('placementTableCtrl', function($scope, $location, PlacementData, onBillCount, OnBillCountByClient, notifier, editingPlacement, $http) {
-
+  $.material.init();
 
     //this function is called when a user clicks the x or check icon to update billing status
     $scope.updateBilling = function(placement) {
+
         //switch the billing status of the placement in the model
-        if(placement.onBilling === "Yes") {
-            placement.onBilling = "No";
-        }
-        else if(placement.onBilling === "No") {
-            placement.onBilling = "Yes";
-        }
+        placement.onBilling = !placement.onBilling;
+
+
         //update record in database with new billing status
         var placement_id = placement._id;
 
         $http({method: 'PUT', url: '/api/placements/' + placement_id, data: placement})
             .success(function() {
+
+
                 notifier.notify('success','Placement updated!');
                 getData();
         }).error(function(error) {
             console.log(error);
             notifier.notify('error','Something went wrong!');
-                if(placement.onBilling === "Yes") {
-                    placement.onBilling = "No";
-                }
-                else if(placement.onBilling === "No") {
-                    placement.onBilling = "Yes";
-                }
+                placement.onBilling = !placement.onBilling;
+
+
         });
 
 
@@ -62,7 +59,15 @@ angular.module('app').controller('placementTableCtrl', function($scope, $locatio
     var getData = function() {
 
         PlacementData.query().$promise.then(function (data) { //resource query gets data
-
+//          $.each(data, function(index, placement) {
+//            if(placement.onBilling == "Yes") {
+//              placement.onBilling = true;
+//            }
+//            else {
+//              placement.onBilling = false;
+//            }
+//
+//          });
             $scope.placements = data; //set placement data on scope
 
             $scope.onBillingCount = onBillCount.getCount(data); //set scope variable for OnBilling badge which counts total # on billing

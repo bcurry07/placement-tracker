@@ -5,7 +5,7 @@ var placementSchema = mongoose.Schema({
     name: String,
     date: Date,
     client: String,
-    onBilling: String,
+    onBilling: Boolean,
     type: String,
     notes: String
 });

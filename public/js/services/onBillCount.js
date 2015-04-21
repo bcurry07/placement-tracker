@@ -7,7 +7,7 @@ angular.module('app').factory('onBillCount', function() {
 
             var count = 0;
             data.forEach(function(placement) {
-                if (placement.onBilling === "Yes") count++;
+                if (placement.onBilling) count++;
             });
             return count;
         }
@@ -47,7 +47,7 @@ angular.module('app').factory('OnBillCountByClient', function($http, $q) {
                         //if placement matches current client and is on billing then add to the count
                        if (placement.client === client) {
                            clientCount++;
-                           if (placement.onBilling === "Yes") {
+                           if (placement.onBilling) {
                                clientBillCount++;
                            }
                        }

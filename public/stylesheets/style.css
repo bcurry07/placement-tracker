@@ -26,7 +26,12 @@ select.input-sm {
   margin-right: 5px;
 }
 .deleteIcon {
-  display: none;
+/*display: none*/
+  color: #d3d3d3;
+  border: 0px;
+}
+.deleteIcon:hover {
+  color: #000;
 }
 tr:hover .placementName,
 tr:hover .clientName {
@@ -76,4 +81,24 @@ tr.panelHeaderRow th:hover {
 }
 .formMenu {
   margin-left: 15px;
+}
+.nav-container {
+  width: 100%;
+}
+body {
+  padding: 0px;
+  padding-top: 120px;
+}
+ul.nav li,
+.panel-heading {
+  font-size: 20px;
+}
+.toast-success {
+  background-color: #404040;
+}
+tbody tr td {
+  height: 48px;
+}
+.form-group {
+  margin-bottom: 30px;
 }

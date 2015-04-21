@@ -1,7 +1,10 @@
-angular.module('app', ['ngResource','ngRoute']);
+angular.module('app', ['ngResource','ngRoute', 'ui.bootstrap']);
 
 angular.module('app').config(function($routeProvider, $locationProvider) {
-    $locationProvider.html5Mode(true);
+    $locationProvider.html5Mode({
+      enabled: true,
+      requireBase: false
+    });
     $routeProvider
         //this routes the user to the various html pagesd
         //when the url takes the user to the 'when' location then it diverts them to the template url

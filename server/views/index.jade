@@ -1,17 +1,21 @@
 extends layout
 
 block content
-    .container
-        div(ng-controller='mainMenuCtrl')
-            .navbar.navbar-default
-                .navbar-header
-                    button.btn.btn-success.navbar-toggle(data-toggle='collapse', data-target='.navbar-collapse')
-                        span.glyphicon.glyphicon-chevron-down
-                .navbar-collapse.collapse
-                    ul.nav.navbar-nav.navbar-left
-                        li#home.nav(ng-class="{active: isActive('/')}")
-                            a(href='/') Placements
-                        li#new.nav(ng-class="{active: isActive('/graphs')}")
-                            a(href='/graphs') Graphs
+    .container(style="margin: 0px; width: 100%")
+        .nav-container
+            div(ng-controller='mainMenuCtrl')
+                .navbar.navbar-material-light-blue-A700.navbar-fixed-top.sample.shadow-z-2
+                    .navbar-header.col-md-offset-2
+                        button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-responsive-collapse')
+                            span.icon-bar
+                            span.icon-bar
+                            span.icon-bar
+                        img(style="height: 60px; width: 100px; padding: 0px").navbar-brand(src='/vendor/logo.jpg')
+                    .navbar-collapse.collapse.navbar-responsive-collapse
+                        ul.nav.navbar-nav
+                            li#home.nav(ng-class="{active: isActive('/')}")
+                                a(href='/') Placements
+                            li#new.nav(ng-class="{active: isActive('/graphs')}")
+                                a(href='/graphs') Graphs
 
-    ng-view
+        ng-view
