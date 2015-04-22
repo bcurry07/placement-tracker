@@ -1,6 +1,7 @@
 angular.module('app').controller('placementTableCtrl', function($scope, $location, PlacementData, onBillCount, OnBillCountByClient, notifier, editingPlacement, $http) {
   $.material.init();
 
+  $scope.filterText = "";
     //this function is called when a user clicks the x or check icon to update billing status
     $scope.updateBilling = function(placement) {
 
@@ -68,6 +69,7 @@ angular.module('app').controller('placementTableCtrl', function($scope, $locatio
 //            }
 //
 //          });
+
             $scope.placements = data; //set placement data on scope
 
             $scope.onBillingCount = onBillCount.getCount(data); //set scope variable for OnBilling badge which counts total # on billing

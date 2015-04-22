@@ -23,7 +23,7 @@ hr
                         span.badge.btn-warning(style="margin-left: 5px") {{onBillingCount}}
                     td Notes
             tbody
-                tr(ng-repeat="placement in placements | orderBy:placementSortOrder:reverseSort | filter:filterText | filter:filterClient | filter:filterOnBilling")
+                tr(ng-repeat="placement in placements | orderBy:placementSortOrder:reverseSort | filter:filterText")
                     td(style="padding: 0px")
                         .btn-group.menuBtn
                             button.dropdown-toggle(type="button", data-toggle="dropdown", aria-expanded="false", style="border: 0px; background-color: white; padding: 0px")

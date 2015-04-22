@@ -1,4 +1,4 @@
-angular.module('app').controller('editPlacementCtrl', function($scope, $location, PlacementData, $routeParams, $route, $filter, notifier, editingPlacement) {
+angular.module('app').controller('editPlacementCtrl', function($scope, $location, PlacementData, $routeParams, $route, $filter, notifier, editingPlacement, OnBillCountByClient) {
   $.material.init();
     //Cancel button returns to main page
     $scope.cancelEdit = function() {
@@ -10,6 +10,9 @@ angular.module('app').controller('editPlacementCtrl', function($scope, $location
            placement.date = $filter('dateFilter')(placement.date); //filter date from ISO to MM/DD/YY
             $scope.placement = placement;
 
+  OnBillCountByClient.getClients().then(function(clients) {
+    $scope.clients = clients;
+  });
 
 
     //save edits to placement
