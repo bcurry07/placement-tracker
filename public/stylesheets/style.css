@@ -99,5 +99,11 @@ tbody tr td {
   height: 48px;
 }
 .form-group {
-  margin-bottom: 30px;
+  margin-bottom: 50px;
+}
+.form-group label {
+  font-size: 18px;
+}
+.form-group input {
+  font-size: 20px;
 }
