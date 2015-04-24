@@ -45,10 +45,11 @@ hr
                     td {{placement.client}}
                     td {{placement.type}}
                     td
-                        .togglebutton.togglebutton-material-green
-                            label
-                                input(type="checkbox", ng-checked="placement.onBilling",ng-click="updateBilling(placement)", style="margin-left: 25px")
-                                span.toggle
+                        .form-group(style="margin-bottom: 0px")
+                            .togglebutton.togglebutton-material-green(material-design)
+                                label
+                                    input(type="checkbox", ng-checked="placement.onBilling",ng-click="updateBilling(placement)", style="margin-left: 25px")
+
                         //span.billingIcon.cursor.glyphicon.glyphicon-ok(data-toggle="tooltip", data-placement="top", title="Change Billing Status", ng-show="placement.onBilling | onBillingIcon", ng-click="updateBilling(placement)")
                         //span.billingIcon.cursor.glyphicon.glyphicon-remove(data-toggle="tooltip", data-placement="top", title="Change Billing Status", ng-hide="placement.onBilling | onBillingIcon", ng-click="updateBilling(placement)")
                     td {{placement.notes}}
@@ -58,4 +59,7 @@ hr
 delete-modal
 
 
-
+//.form-group
+//    .togglebutton.togglebutton-material-green
+//        label(style="font-weight: bold") Currently on Billing?
+//            input(type="checkbox", ng-checked="placement.onBilling", style="margin-left: 10px", ng-model="placement.onBilling")

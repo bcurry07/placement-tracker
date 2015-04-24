@@ -1,5 +1,6 @@
 angular.module('app').controller('placementTableCtrl', function($scope, $location, PlacementData, onBillCount, OnBillCountByClient, notifier, editingPlacement, $http) {
-  $.material.init();
+
+  $scope.placements = [];
 
   $scope.filterText = "";
     //this function is called when a user clicks the x or check icon to update billing status
@@ -60,15 +61,6 @@ angular.module('app').controller('placementTableCtrl', function($scope, $locatio
     var getData = function() {
 
         PlacementData.query().$promise.then(function (data) { //resource query gets data
-//          $.each(data, function(index, placement) {
-//            if(placement.onBilling == "Yes") {
-//              placement.onBilling = true;
-//            }
-//            else {
-//              placement.onBilling = false;
-//            }
-//
-//          });
 
             $scope.placements = data; //set placement data on scope
 
@@ -78,7 +70,11 @@ angular.module('app').controller('placementTableCtrl', function($scope, $locatio
             OnBillCountByClient.getList($scope.placements).then(function (list) {
                 $scope.list = list;
             });
+          //$scope.broadcast('dataloaded');
+         // $.material.init();
         });
+
+
     };
 
     //when someone clicks the filter icon to remove the filter...

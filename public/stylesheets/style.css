@@ -98,12 +98,12 @@ ul.nav li,
 tbody tr td {
   height: 48px;
 }
-.form-group {
+form .form-group {
   margin-bottom: 50px;
 }
-.form-group label {
+form .form-group label {
   font-size: 18px;
 }
-.form-group input {
+form .form-group input {
   font-size: 20px;
 }
