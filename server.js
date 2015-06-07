@@ -53,7 +53,7 @@ if(env === 'development') {
   mongoose.connect('mongodb://localhost/untitled');
 } else {
   //EDIT: mongolab.com hosted db connection string
-  mongoose.connect('mongodb://' + process.env.MONGO_USERNAME + ': ' + process.env.MONGO_PW + '@ds037768.mongolab.com:37768/placements');
+  mongoose.connect('mongodb://' + process.env.MONGO_USERNAME + ':' + process.env.MONGO_PW + '@ds037768.mongolab.com:37768/placements');
 }
 
 var db = mongoose.connection;
