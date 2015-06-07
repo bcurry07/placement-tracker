@@ -8,7 +8,6 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
 
-
 //var routes = require('./routes/index');
 
 var placementModel = require('./server/models/Placement');
@@ -18,13 +17,15 @@ var placements = require('./server/controllers/placements');
 //set environment variable to development by default
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
+var login = process.env.PT_LOGIN;
+
 //create express app
 var app = express();
 
 //implements basic HTTP authorization by enforcing credentials via browser login dialog
 //auth is used below as middleware for routes and allows routing to placements.js functions to occur if credentials are correct
 var auth = express.basicAuth(function(username, password) {
-   return username === 'gina' && password === 'gina';
+  return username === login && password === login;
 });
 
 // view engine setup
@@ -48,17 +49,17 @@ app.use(app.router);
 
 
 if(env === 'development') {
-    //EDIT: change "untitled" to name of app root directory
-    mongoose.connect('mongodb://localhost/untitled');
+  //EDIT: change "untitled" to name of app root directory
+  mongoose.connect('mongodb://localhost/untitled');
 } else {
-    //EDIT: mongolab.com hosted db connection string
-    mongoose.connect('mongodb://bcurry:placements@ds037768.mongolab.com:37768/placements');
+  //EDIT: mongolab.com hosted db connection string
+  mongoose.connect('mongodb://' + process.env.MONGO_USERNAME + ': ' + process.env.MONGO_PW + '@ds037768.mongolab.com:37768/placements');
 }
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error...'));
 db.once('open', function callback() {
-    console.log('db opened');
+  console.log('db opened');
 });
 
 placementModel.createDefaultPlacements();
@@ -66,7 +67,7 @@ placementModel.createDefaultPlacements();
 //*****************************************************************************
 
 app.get('/partials/:partialPath', function(req, res) {
-    res.render('partials/' + req.params.partialPath);
+  res.render('partials/' + req.params.partialPath);
 });
 
 app.get('/api/placements/:placementId', placements.getPlacement);
@@ -82,7 +83,7 @@ app.get('/api/billingclients', placements.getBillingClients);
 app.delete('/api/placements/:placementId', auth, placements.deletePlacement); //auth middleware used to require credentials prior to delete function
 
 app.all('/api/*', function(req, res) {
-   res.send(404);
+  res.send(404);
 });
 
 //creates a "catch-all" route that always serves up index page and leaves routing responsibility to client-side (caution: dangerous if routing is messed up)
@@ -91,7 +92,7 @@ app.all('/api/*', function(req, res) {
 //});
 
 app.get('*', function(req, res) {
-    res.render('index');
+  res.render('index');
 });
 
 
@@ -115,9 +116,9 @@ app.get('*', function(req, res) {
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
 });
 
 /// error handlers
@@ -125,21 +126,21 @@ app.use(function(req, res, next) {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-    app.use(function(err, req, res, next) {
-        res.render('error', {
-            message: err.message,
-            error: err
-        });
+  app.use(function(err, req, res, next) {
+    res.render('error', {
+      message: err.message,
+      error: err
     });
+  });
 }
 
 // production error handler
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
-    res.render('error', {
-        message: err.message,
-        error: {}
-    });
+  res.render('error', {
+    message: err.message,
+    error: {}
+  });
 });
 
 
