@@ -13,7 +13,6 @@ var mongoose = require('mongoose');
 var placementModel = require('./server/models/Placement');
 var placements = require('./server/controllers/placements');
 
-
 //set environment variable to development by default
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
