@@ -16,11 +16,7 @@
     "express": "~3.4.8",
     "jade": "~1.3.0",
     "mongodb": "~2.0.45",
-    "mongoose": "~4.1.9",
-    "morgan": "~1.0.0",
-    "node": "0.0.0",
-    "static-favicon": "~1.0.0",
-    "stylus": "0.42.3",
+    "mongoose": "4.1.9",
     "mongoose-timestamp": {
       "name": "mongoose-timestamp",
       "description": "Mongoose plugin that adds createdAt and updatedAt auto-assigned date properties",
@@ -50,7 +46,11 @@
       "engine": {
         "node": ">= 0.6"
       }
-    }
+    },
+    "morgan": "~1.0.0",
+    "node": "0.0.0",
+    "static-favicon": "~1.0.0",
+    "stylus": "0.42.3"
   },
   "devDependencies": {
     "karma": "^0.12.23",
