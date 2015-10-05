@@ -1,6 +1,6 @@
 angular.module('app').controller('editPlacementCtrl', function($scope, $location, PlacementData, $routeParams, $route, $filter, notifier, editingPlacement, OnBillCountByClient) {
   $.material.init();
-    //Cancel button returns to main page
+    //Cancel button returns user to main page
     $scope.cancelEdit = function() {
         $location.url('/');
     };
