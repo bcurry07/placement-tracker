@@ -16,7 +16,7 @@
     "express": "~3.4.8",
     "jade": "~1.3.0",
     "mongodb": "~2.0.45",
-    "mongoose": "4.1.9",
+    "mongoose": "^4.0.1",
     "mongoose-timestamp": {
       "name": "mongoose-timestamp",
       "description": "Mongoose plugin that adds createdAt and updatedAt auto-assigned date properties",
