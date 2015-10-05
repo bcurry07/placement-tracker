@@ -16,36 +16,7 @@
     "express": "~3.4.8",
     "jade": "~1.3.0",
     "mongoose": "^4.1.10",
-    "mongoose-timestamp": {
-      "name": "mongoose-timestamp",
-      "description": "Mongoose plugin that adds createdAt and updatedAt auto-assigned date properties",
-      "version": "0.2.1",
-      "author": "Nicholas Penree <nick@penree.com>",
-      "keywords": [
-        "mongodb",
-        "mongoose",
-        "plugin",
-        "timestamps",
-        "createdAt",
-        "updatedAt"
-      ],
-      "repository": {
-        "type": "git",
-        "url": "git://github.com/drudge/mongoose-timestamp"
-      },
-      "devDependencies": {
-        "mongoose": "^3.8.8",
-        "should": "^3.2.0-beta1",
-        "mocha": "^1.18.2"
-      },
-      "scripts": {
-        "test": "mocha -u bdd -R spec -c ./test/*test.js"
-      },
-      "license": "MIT",
-      "engine": {
-        "node": ">= 0.6"
-      }
-    },
+    "mongoose-timestamp": "^0.2.1",
     "morgan": "~1.0.0",
     "node": "0.0.0",
     "static-favicon": "~1.0.0",
