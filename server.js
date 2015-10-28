@@ -71,13 +71,13 @@ app.get('/partials/:partialPath', function(req, res) {
 
 app.get('/api/placements/:placementId', placements.getPlacement);
 
-app.get('/api/placements', placements.getPlacements);
+app.get('/api/placements', auth, placements.getPlacements);
 
 app.put('/api/placements/:placementId', auth, placements.updatePlacement);
 
 app.post('/api/placements', auth, placements.addPlacement);
 
-app.get('/api/billingclients', placements.getBillingClients);
+app.get('/api/billingclients', auth, placements.getBillingClients);
 
 app.delete('/api/placements/:placementId', auth, placements.deletePlacement); //auth middleware used to require credentials prior to delete function
 
