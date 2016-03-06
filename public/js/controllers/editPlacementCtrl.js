@@ -1,4 +1,4 @@
-var _ = require('lodash');
+
 
 angular.module('app').controller('editPlacementCtrl', function($scope, $location, PlacementData, $routeParams, $route, $filter, notifier, editingPlacement) {
   $.material.init();
