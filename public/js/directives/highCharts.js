@@ -19,7 +19,9 @@ angular.module('app').directive('highChart', function (PlacementData, periodsSch
                         var placementDate = new Date(placement.date); //typecast placement date value to an actual Date variable type
                         // set hours to 1 so placement on border/edge date does not also have exact time of 0:00:00 to simplify the expression below
                         placementDate.setHours(12);
-                        if (placement.name === "R McDonald") {
+                        if (placement.name === "R McDonald" && (period.number === 8 || period.number === 9)) {
+                            console.log(period.number);
+                            console.log(period);
                             console.log(placementDate.getTime());
                             console.log(period.startDate.getTime());
                             console.log(period.endDate.getTime());
