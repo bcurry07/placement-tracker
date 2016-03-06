@@ -1,3 +1,5 @@
+var _ = require('lodash');
+
 angular.module('app').controller('newPlacementCtrl', function($scope, $location, notifier, PlacementData) {
 
   $.material.init();

@@ -1,3 +1,5 @@
+var _ = require('lodash');
+
 angular.module('app').controller('graphsCtrl', function($scope, $location, periodsSchedule) {
   $.material.init();
 

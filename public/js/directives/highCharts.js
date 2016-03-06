@@ -1,3 +1,4 @@
+var _ = require('lodash');
 //highcharts plug-in to create graphs using a directive as an attribute in the html tag
 
 angular.module('app').directive('highChart', function (PlacementData, periodsSchedule) {
@@ -25,7 +26,6 @@ angular.module('app').directive('highChart', function (PlacementData, periodsSch
                         }
                     });
                 });
-                console.log(placementsThisFiscalYear);
 
 
                 //after all necessary data is collected, use the highcharts plugin
