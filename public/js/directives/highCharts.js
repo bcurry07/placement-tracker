@@ -17,7 +17,13 @@ angular.module('app').directive('highChart', function (PlacementData, periodsSch
                 _.forEach(data, function (placement) {
                     _.forEach(periodsThisFiscalYear, function (period) {
                         var placementDate = new Date(placement.date); //typecast placement date value to an actual Date variable type
-                        placementDate.setHours(1);
+                        // set hours to 1 so placement on border/edge date does not also have exact time of 0:00:00 to simplify the expression below
+                        placementDate.setHours(12);
+                        if (placement.name === "R McDonald") {
+                            console.log(placementDate.getTime());
+                            console.log(period.startDate.getTime());
+                            console.log(period.endDate.getTime());
+                        }
                         if (placementDate.getTime() > period.startDate.getTime() && placementDate.getTime() < period.endDate.getTime()) {
                             placement.fiscalYear = period.fiscalYear;
                             placement.period = period.number;
