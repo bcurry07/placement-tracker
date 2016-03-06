@@ -17,6 +17,7 @@ angular.module('app').directive('highChart', function (PlacementData, periodsSch
                 _.forEach(data, function (placement) {
                     _.forEach(periodsThisFiscalYear, function (period) {
                         var placementDate = new Date(placement.date); //typecast placement date value to an actual Date variable type
+                        placementDate.setHours(1);
                         if (placementDate.getTime() > period.startDate.getTime() && placementDate.getTime() < period.endDate.getTime()) {
                             placement.fiscalYear = period.fiscalYear;
                             placement.period = period.number;
