@@ -1,4 +1,4 @@
-angular.module('app').controller('newPlacementCtrl', function($scope, $location, notifier, PlacementData, OnBillCountByClient) {
+angular.module('app').controller('newPlacementCtrl', function($scope, $location, notifier, PlacementData) {
 
   $.material.init();
     //cancel button returns user to main page
@@ -6,9 +6,8 @@ angular.module('app').controller('newPlacementCtrl', function($scope, $location,
         $location.url('/');
     };
 
-  OnBillCountByClient.getClients().then(function(clients) {
-    $scope.clients = clients;
-  });
+    $scope.clients = [];
+    $scope.recruiters = [];
 
     //sets data on model to be displayed on new placement form as default values
     $scope.placement = {};
@@ -28,6 +27,16 @@ angular.module('app').controller('newPlacementCtrl', function($scope, $location,
         });
 
     };
+
+    PlacementData.query().$promise.then(function (data) { //resource query gets data
+
+        var uniqueClientObjects = _.uniqBy(data, 'client');
+        _.forEach(uniqueClientObjects, function (placement) {
+            $scope.clients.push(placement.client);
+            $scope.recruiters.push(placement.recruiter);
+        });
+
+    });
 
 
 

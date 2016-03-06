@@ -1,5 +1,8 @@
-angular.module('app').controller('editPlacementCtrl', function($scope, $location, PlacementData, $routeParams, $route, $filter, notifier, editingPlacement, OnBillCountByClient) {
+angular.module('app').controller('editPlacementCtrl', function($scope, $location, PlacementData, $routeParams, $route, $filter, notifier, editingPlacement) {
   $.material.init();
+
+    $scope.clients = [];
+    $scope.recruiters = [];
     //Cancel button returns user to main page
     $scope.cancelEdit = function() {
         $location.url('/');
@@ -10,9 +13,6 @@ angular.module('app').controller('editPlacementCtrl', function($scope, $location
            placement.date = $filter('dateFilter')(placement.date); //filter date from ISO to MM/DD/YY
             $scope.placement = placement;
 
-  OnBillCountByClient.getClients().then(function(clients) {
-    $scope.clients = clients;
-  });
 
 
     //save edits to placement
@@ -33,6 +33,16 @@ angular.module('app').controller('editPlacementCtrl', function($scope, $location
         });
 
     };
+
+    PlacementData.query().$promise.then(function (data) { //resource query gets data
+
+        var uniqueClientObjects = _.uniqBy(data, 'client');
+        _.forEach(uniqueClientObjects, function (placement) {
+            $scope.clients.push(placement.client);
+            $scope.recruiters.push(placement.recruiter);
+        });
+
+    });
 
 });
 

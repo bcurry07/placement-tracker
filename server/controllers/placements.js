@@ -29,6 +29,7 @@ exports.updatePlacement = function(req, res) {
         "name": req.body.name,
         "date": req.body.date,
         "client": req.body.client,
+        "recruiter": req.body.recruiter,
         "type": req.body.type,
         "onBilling": req.body.onBilling,
         "notes": req.body.notes

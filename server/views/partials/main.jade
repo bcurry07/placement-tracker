@@ -18,6 +18,7 @@ hr
                     td.placementNameColumn.cursor(ng-click="placementSortOrder='name'; reverseSort = !reverseSort") Name
                     td.cursor(ng-click="placementSortOrder='date'; reverseSort = !reverseSort") Date
                     td.cursor(ng-click="sortColumn='client'; reverseSort = !reverseSort; sortTable()") Client
+                    td.cursor(ng-click="sortColumn='recruiter'; reverseSort = !reverseSort; sortTable()") Recruiter
                     td.cursor(ng-click="sortColumn='type'; reverseSort = !reverseSort; sortTable()") Type
                     td.cursor(ng-click="sortColumn='onBilling'; reverseSort = !reverseSort; sortTable()") On Billing
                         span.badge.btn-warning(style="margin-left: 5px") {{onBillingCount}}
@@ -43,6 +44,7 @@ hr
                         span {{placement.name}}
                     td {{placement.date | dateFilter}}
                     td {{placement.client}}
+                    td {{placement.recruiter}}
                     td {{placement.type}}
                     td
                         .form-group(style="margin-bottom: 0px")

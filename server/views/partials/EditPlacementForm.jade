@@ -10,6 +10,8 @@
                 input.form-control(name="placementDate", id="placementDate", type="text", required, ng-model="placement.date", placeholder="Placement Date", date-input)
             .form-group.clientInput
                 input.form-control(name="placementClient", id="placementClient", type="text", required, ng-model="placement.client", placeholder="Client Name", typeahead="client for client in clients | filter:$viewValue")
+            .form-group.clientInput
+                input.form-control(name="placementRecruiter", id="placementRecruiter", type="text", required, ng-model="placement.recruiter", placeholder="Recruiter Name", typeahead="recruiter for recruiter in recruiters | filter:$viewValue")
             .form-group
                 .togglebutton.togglebutton-material-green
                     label(style="font-weight: bold") Currently on Billing?
