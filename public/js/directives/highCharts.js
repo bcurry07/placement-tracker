@@ -1,7 +1,7 @@
 
 //highcharts plug-in to create graphs using a directive as an attribute in the html tag
 
-angular.module('app').directive('highChart', function ($filter, PlacementData, periodsSchedule) {
+angular.module('app').directive('highChart', function (PlacementData, periodsSchedule) {
     return {
         restrict: 'A',
         link: function (scope, elem, attrs) {
@@ -16,10 +16,9 @@ angular.module('app').directive('highChart', function ($filter, PlacementData, p
 
                 _.forEach(data, function (placement) {
                     _.forEach(periodsThisFiscalYear, function (period) {
-                        var placementDate = new Date(placement.date); //typecast placement date value to an actual Date variable type
+                        var placementDate = new Date(placement.date.getUTCFullYear(), placement.date.getUTCMonth(), placement.date.getUTCDate()); //typecast placement date value to an actual Date variable type
                         // set hours to 1 so placement on border/edge date does not also have exact time of 0:00:00 to simplify the expression below
                         placementDate.setHours(12);
-                        placementDate = $filter('dateFilter')(placementDate);
                         if (placement.name === "R McDonald" && (period.number === 8 || period.number === 9)) {
                             console.log(period.number);
                             console.log(period);
