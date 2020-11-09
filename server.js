@@ -51,7 +51,8 @@ if(env === 'development') {
   //EDIT: change "untitled" to name of app root directory
   mongoose.connect('mongodb://localhost/untitled');
 } else {
-  mongoose.connect('mongodb+srv://' + process.env.MONGO_USERNAME + ':' + process.env.MONGO_PW + '@placements.tekqa.mongodb.net/placements?retryWrites=true&w=majority');
+  // mongodb://bcurry:<password>
+  mongoose.connect('mongodb//' + process.env.MONGO_USERNAME + ':' + process.env.MONGO_PW + '@placements-shard-00-00.tekqa.mongodb.net:27017,placements-shard-00-01.tekqa.mongodb.net:27017,placements-shard-00-02.tekqa.mongodb.net:27017/placements?ssl=true&replicaSet=atlas-7w6rq8-shard-0&authSource=admin&retryWrites=true&w=majority');
   // mongodb+srv://bcurry:<password>@placements.tekqa.mongodb.net/placements?retryWrites=true&w=majority
   // mongoose.connect('mongodb://' + process.env.MONGO_USERNAME + ':' + process.env.MONGO_PW + '@ds037768.mongolab.com:37768/placements');
 }
