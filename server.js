@@ -51,7 +51,7 @@ if(env === 'development') {
   //EDIT: change "untitled" to name of app root directory
   mongoose.connect('mongodb://localhost/untitled');
 } else {
-  var promise = mongoose.connect(process.env.MONGO_URI_OLD, {
+  var promise = mongoose.connect(process.env.MONGO_URI, {
     useMongoClient: true,
   });
 
