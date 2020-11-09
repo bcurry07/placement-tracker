@@ -51,7 +51,7 @@ if(env === 'development') {
   //EDIT: change "untitled" to name of app root directory
   mongoose.connect('mongodb://localhost/untitled');
 } else {
-  mongoose.connect('mongodb+srv://' + process.env.MONGO_USERNAME + ':' + process.env.MONGO_PW + '@placements.tekqa.mongodb.net/placements?retryWrites=true&w=majority', { dbName: 'placements' });
+  mongoose.connect('mongodb+srv://' + process.env.MONGO_USERNAME + ':' + process.env.MONGO_PW + '@placements.tekqa.mongodb.net/placements?retryWrites=true&w=majority');
   }
 
 var db = mongoose.connection;
