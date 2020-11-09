@@ -51,8 +51,9 @@ if(env === 'development') {
   //EDIT: change "untitled" to name of app root directory
   mongoose.connect('mongodb://localhost/untitled');
 } else {
-  //EDIT: mongolab.com hosted db connection string
-  mongoose.connect('mongodb://' + process.env.MONGO_USERNAME + ':' + process.env.MONGO_PW + '@ds037768.mongolab.com:37768/placements');
+  mongoose.connect('mongodb+srv://' + process.env.MONGO_USERNAME + ':' + process.env.MONGO_PW + '@placements.tekqa.mongodb.net/placements?retryWrites=true&w=majority');
+  // mongodb+srv://bcurry:<password>@placements.tekqa.mongodb.net/placements?retryWrites=true&w=majority
+  // mongoose.connect('mongodb://' + process.env.MONGO_USERNAME + ':' + process.env.MONGO_PW + '@ds037768.mongolab.com:37768/placements');
 }
 
 var db = mongoose.connection;
