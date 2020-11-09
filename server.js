@@ -58,7 +58,7 @@ if(env === 'development') {
   });
 
   promise.then(function(db) {
-    console.log('db opened');
+    console.log('db opened!');
   });
 }
 
