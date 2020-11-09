@@ -51,14 +51,26 @@ if(env === 'development') {
   //EDIT: change "untitled" to name of app root directory
   mongoose.connect('mongodb://localhost/untitled');
 } else {
-  mongoose.connect('mongodb+srv://' + process.env.MONGO_USERNAME + ':' + process.env.MONGO_PW + '@placements.tekqa.mongodb.net/placements?retryWrites=true&w=majority');
-  }
+  // mongoose.connect('mongodb+srv://' + process.env.MONGO_USERNAME + ':' + process.env.MONGO_PW + '@placements.tekqa.mongodb.net/placements?retryWrites=true&w=majority');
+  //mongodb+srv://bcurry:<password>@placements.tekqa.mongodb.net/placements?retryWrites=true&w=majority
 
-var db = mongoose.connection;
+  var promise = mongoose.connect('mongodb+srv://' + process.env.MONGO_USERNAME + ':' + process.env.MONGO_PW + '@placements.tekqa.mongodb.net/placements?retryWrites=true&w=majority', {
+    useMongoClient: true,
+  });
+  console.log(process.env.MONGO_USERNAME);
+  console.log( process.env.MONGO_PW);
+  promise.then(function(db) {
+    console.log('callback from the db');
+  });
+}
+
+
+/*var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error...'));
+  console.log('opening db');
 db.once('open', function callback() {
   console.log('db opened');
-});
+});*/
 
 placementModel.createDefaultPlacements();
 
