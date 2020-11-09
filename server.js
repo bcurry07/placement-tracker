@@ -56,21 +56,11 @@ if(env === 'development') {
   var promise = mongoose.connect(oldString, {
     useMongoClient: true,
   });
-
-  console.log(process.env.MONGO_USERNAME);
-  console.log( process.env.MONGO_PW);
+  
   promise.then(function(db) {
-    console.log('callback from the db');
+    console.log('db opened');
   });
 }
-
-
-/*var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error...'));
-  console.log('opening db');
-db.once('open', function callback() {
-  console.log('db opened');
-});*/
 
 placementModel.createDefaultPlacements();
 
