@@ -57,10 +57,8 @@ if(env === 'development') {
     useMongoClient: true,
   });
 
-  console.log(process.env.MONGO_USERNAME);
-  console.log( process.env.MONGO_PW);
   promise.then(function(db) {
-    console.log('callback from the db');
+    console.log('db opened!');
   });
 }
 
